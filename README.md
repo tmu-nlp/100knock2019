@@ -1,6 +1,6 @@
 # 100knock2019
 
-小町研2018年度新入生向け勉強会として、言語処理100本ノックに取り組みます。  
+小町研2019年度新入生向け勉強会として、言語処理100本ノックに取り組みます。  
 教材URL: http://www.cl.ecei.tohoku.ac.jp/nlp100/
 
 毎週1章分 (10問) 解いてください。  
@@ -39,8 +39,8 @@ wget https://raw.githubusercontent.com/svn2github/word2vec/master/questions-word
 # みんなの進捗
 ![progress](./progress.png)
 
-## 100knock2018 (English)  
-We will work NLP 100 knockings as the study meeting for the newcomers in 2018.  
+## 100knock2019 (English)  
+We will work NLP 100 knockings as the study meeting for the newcomers in 2019.  
 Let's solve the 10 questions every week!  
 TA and participants review your code.  
 
