@@ -1,5 +1,5 @@
 s = "stressed"
-ans = "";
+ans = ""
 for i in range(len(s)):
-    ans += s[len(s) - i -1]
+    ans += s[len(s) - i - 1]
 print(ans)
