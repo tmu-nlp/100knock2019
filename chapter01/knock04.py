@@ -2,8 +2,12 @@ letter = "Now I need a drink, alcoholic of course, after the heavy lectures invo
 
 word = letter.split()
 ans = []
- 
-for i in range(15):
-    ans.append(word[i][0])
+count = 0
+
+for i in word:
+    
+    ans.append(word[count][0])
+    count+=1
+
 
 print(ans)
