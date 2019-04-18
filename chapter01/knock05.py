@@ -4,7 +4,7 @@ words = l.split()
 ans = []
 list = [0,4,5,6,7,8,14,15,18]
 words_dict= {}
-
+count = 0
 
 for  i in range(15):
     if i in list:
