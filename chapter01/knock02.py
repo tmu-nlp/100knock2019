@@ -1,7 +1,8 @@
-l = "パタトクカシーー"
+letter1 = "パトカー"
+letter2 ="タクシー"
+ans = ""
 
-for i in [0,2,4,6]:
-    print(l[i], end = "")
-
-print("\n")
-
+for i in range(4):
+    ans = ans + letter1[i] + letter2[i]
+    
+print(ans)

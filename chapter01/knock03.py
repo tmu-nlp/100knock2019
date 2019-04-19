@@ -1,8 +1,13 @@
-letter1 = "パトカー"
-letter2 ="タクシー"
-ans = ""
+letter = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics."
 
-for i in range(4):
-    ans = ans + letter1[i] + letter2[i]
+word = letter.split()
+ans = []
+count = 0
+
+for i in word:
     
+    ans.append(word[count][0])
+    count+=1
+
+
 print(ans)

@@ -1,11 +1,38 @@
+##与えられた文字列の各文字を，以下の仕様で変換する関数cipherを実装せよ．
+##英小文字ならば(219 - 文字コード)の文字に置換
+##その他の文字はそのまま出力
+##この関数を用い，英語のメッセージを暗号化・復号化せよ．
 
-##引数x, y, zを受け取り「x時のyはz」という文字列を返す関数を実装せよ．さらに，x=12, y="気温", z=22.4として，実行結果を確認せよ．
 
-x =12
-y = "気温"
-z = 22.4
+def cipher (sentence):
+    words=list(sentence)   
+    count = 0
 
-def dis(x, y, z):
-    print(format(x) + "時の" +format(y) +"は"  + format(z))
+    for i in words:
+        if words[count].islower()==True:
+            wordcode =  ord(words[count])
+            words[count] = chr(219 - wordcode)          
+        count+=1
 
-dis(x, y, z)
+    words = "".join(words)
+    print(words)
+
+    
+
+    words = list(words)
+    count=0
+    for i in words:
+        if words[count].islower()==True:
+            wordcode = ord(words[count])
+            words[count] = chr( 219 - wordcode)
+        count +=1
+    words = "".join(words)
+    print(words)
+
+
+
+sentence = input()
+cipher(sentence)
+
+
+

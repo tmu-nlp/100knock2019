@@ -1,42 +1,11 @@
-wordX = "paraparaparadise"
-wordY = "paragraph"
 
-X_bigram = []
-Y_bigram = []
-count=0
-temp = ""
+##引数x, y, zを受け取り「x時のyはz」という文字列を返す関数を実装せよ．さらに，x=12, y="気温", z=22.4として，実行結果を確認せよ．
 
-for i in range(len(wordX)-1):
-    temp = wordX[count] + wordX[count+1]
-    X_bigram.append(temp)
-    count +=1
+x =12
+y = "気温"
+z = 22.4
 
-count=0
-for i in range(len(wordY)-1):
-    temp = wordY[count] + wordY[count+1]
-    Y_bigram.append(temp)
-    count +=1
+def dis(x, y, z):
+    print(format(x) + "時の" +format(y) +"は"  + format(z))
 
-X_bigram = set(X_bigram)
-Y_bigram = set(Y_bigram)
-
-union =set()
-intersection =set()
-difference =set()
-
-
-union = X_bigram.union(Y_bigram)
-intersection  = X_bigram.intersection(Y_bigram)
-difference = X_bigram.difference(Y_bigram)
-
-print("X_bigram=" + format( X_bigram))
-print("Y_bigram" + format(Y_bigram))
-
-print ("和集合" + format(union))
-print("積集合" + format(intersection))
-print("差集合" + format(difference))
-
-
-print("X内に含まれるか：" + format({"se"} <= X_bigram))
-print("Y内に含まれるか：" + format({"se"} <= Y_bigram))
-
+dis(x, y, z)
