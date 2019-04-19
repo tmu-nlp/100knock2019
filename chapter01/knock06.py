@@ -1,7 +1,5 @@
 sentence = "I am an NLPer"
 sentence_list = sentence.split()
- 
-sentence_list.extend("")
 
 word_bigram = []
 letter_bigram = []
@@ -17,7 +15,6 @@ for i in range(len(sentence_list)-1):
 print(word_bigram)
 
 joinletter = "".join(sentence_list)
-
 count=0
 
 for i in range(len(joinletter)-1):
