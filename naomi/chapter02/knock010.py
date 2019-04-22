@@ -2,12 +2,12 @@ import os
 import subprocess
 import re
 
-def file_len(fname):
+def count_file_lines_py(fname):
     with open(fname) as f:
-        for i, l in enumerate(f):
+        for line, l in enumerate(f):
             pass
-    return i + 1
+    return line + 1
 
-def file_len_unix(fname):
-    resultstring =''.join(os.popen('wc -l < hightemp.txt').readlines())
-    return (int(resultstring))
+def count_file_lines_unix(fname):
+    lines_string =''.join(os.popen('wc -l < '+fname).readlines())
+    return (int(lines_string))

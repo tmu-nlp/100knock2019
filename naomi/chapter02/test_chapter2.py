@@ -1,21 +1,23 @@
 import unittest
 import os
 import filecmp
-from knock010 import file_len, file_len_unix
+from knock010 import count_file_lines_py, count_file_lines_unix
+from knock011 import convfile_tab2space, convfile_tab2space_unix
 
 class TestKnockChp2(unittest.TestCase):
     def test_knock010(self):
         print("test knock010")
-        file="hightemp.txt"
-        py_result =  file_len(file)
-        unix_result = file_len_unix(file)
-        self.assertEqual(py_result,unix_result)
+        in_file="hightemp.txt"
+        lines_py =  count_file_lines_py(in_file)
+        lines_unix = count_file_lines_unix(in_file)
+        self.assertEqual(lines_py,lines_unix)
 
     def test_knock011(self):
         print("test knock011")
-        file1='hightemp.txt'
-        file2='hightemp.txt'
-        self.assertTrue(filecmp.cmp(file1,file2,shallow=True))
+        in_file='hightemp.txt'
+        conv_fname_py=convfile_tab2space_unix(in_file)
+        conv_fname_unix=convfile_tab2space_unix(in_file)
+        self.assertTrue(filecmp.cmp(conv_fname_py,conv_fname_unix,shallow=True))
 
 if __name__=='__main__':
     unittest.main()
