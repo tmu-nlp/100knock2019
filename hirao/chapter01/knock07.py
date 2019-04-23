@@ -1,0 +1,5 @@
+def temperature(x, y, z):
+    return "{}時の{}は{}".format(x, y, z)
+
+s = temperature(12, "気温", 22.4)
+print(s)
