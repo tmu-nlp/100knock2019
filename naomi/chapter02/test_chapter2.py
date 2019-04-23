@@ -2,10 +2,10 @@
 import unittest
 import os
 import filecmp
-from knock010 import count_file_lines_py, count_file_lines_unix
-from knock011 import convfile_tab2space, convfile_tab2space_unix
-from knock012 import extcolumn, extcolumn_unix
-from knock013 import mergefiles, mergefiles_unix
+from knock10 import count_file_lines_py, count_file_lines_unix
+from knock11 import convfile_tab2space, convfile_tab2space_unix
+from knock12 import extcolumn, extcolumn_unix
+from knock13 import mergefiles, mergefiles_unix
 
 class TestKnockChp2(unittest.TestCase):
     def test_knock010(self):
