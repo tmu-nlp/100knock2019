@@ -11,6 +11,7 @@
 !chapter*/
 !*/
 make_progress.py
+!progress.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
