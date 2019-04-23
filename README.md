@@ -19,7 +19,7 @@
 2. [Githubのページ](https://github.com/tmu-nlp/100knock2019/)に **Compare and pull request** というボタンが出るので押す
 3. コメントを残して**Create pull request**ボタンを押す
 4. 下の方に**Merge pull request**というボタンが出るので押す
-5. branchesタブを押してプッシュしたブランチが Merged になっていることを確認して横のゴミ箱ボタンを押す
+5. [branchesタブ](https://github.com/tmu-nlp/100knock2019/branches)を押してプッシュしたブランチが Merged になっていることを確認して横のゴミ箱ボタンを押す
 
 (出力結果はcommitしなくてよいです。(画像に関してはどちらでもよいです。) )  
 (後半になると出力するファイルのサイズが大きいものも出てくるからです。)  
