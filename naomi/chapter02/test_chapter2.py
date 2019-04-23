@@ -15,9 +15,11 @@ class TestKnockChp2(unittest.TestCase):
     def test_knock011(self):
         print("test knock011")
         in_file='hightemp.txt'
-        conv_fname_py=convfile_tab2space_unix(in_file)
+        conv_fname_py=convfile_tab2space(in_file)
         conv_fname_unix=convfile_tab2space_unix(in_file)
-        self.assertTrue(filecmp.cmp(conv_fname_py,conv_fname_unix,shallow=True))
+        print("compare "+conv_fname_py+" and "+conv_fname_unix)
+        self.assertTrue(filecmp.cmp(conv_fname_py,conv_fname_unix,shallow=False))
+        # self.assertTrue(filecmp.cmp(conv_fname_py,'py_tab2space_hightemp1.txt',shallow=False))
 
 if __name__=='__main__':
     unittest.main()
