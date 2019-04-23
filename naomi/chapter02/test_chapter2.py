@@ -1,9 +1,11 @@
+# python -m unittest discover
 import unittest
 import os
 import filecmp
 from knock010 import count_file_lines_py, count_file_lines_unix
 from knock011 import convfile_tab2space, convfile_tab2space_unix
 from knock012 import extcolumn, extcolumn_unix
+from knock013 import mergefiles, mergefiles_unix
 
 class TestKnockChp2(unittest.TestCase):
     def test_knock010(self):
@@ -31,6 +33,12 @@ class TestKnockChp2(unittest.TestCase):
         extcolumn_unix(1,in_file,'col2_unix.txt')
         self.assertTrue(filecmp.cmp('col1.txt','col1_unix.txt',shallow=False))
         self.assertTrue(filecmp.cmp('col2.txt','col2_unix.txt',shallow=False))
+
+    def test_knock013(self):
+        print("test knock013")
+        mergefiles('col1.txt','col2.txt','merged.txt')
+        mergefiles_unix('col1.txt','col2.txt','merged_unix.txt')
+        self.assertTrue(filecmp.cmp('merged.txt','merged_unix.txt',shallow=False))
 
 if __name__=='__main__':
     unittest.main()
