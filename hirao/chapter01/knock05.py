@@ -2,7 +2,7 @@ def n_gram(n, seq, output_type='word'):
     output = []
     if output_type == 'word':
         seq = seq.split()
-    for i in range(len(seq) - 1):
+    for i in range(len(seq) - (n-1)):
         output.append(seq[i:i+n])
     return output
 
