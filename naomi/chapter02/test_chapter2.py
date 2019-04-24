@@ -42,8 +42,8 @@ class TestKnockChp2(unittest.TestCase):
     
     def test_knock014(self):
         print("test knock014")
-        shownlines(10,'lines_shown.txt')
-        shownlines_unix(10,'lines_shown_unix.txt')
+        shownlines(10,'hightemp.txt','lines_shown.txt')
+        shownlines_unix(10,'hightemp.txt','lines_shown_unix.txt')
         self.assertTrue('lines_shown.txt','lines_shown_unix',shallow=False)
 
 
