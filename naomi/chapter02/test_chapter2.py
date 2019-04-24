@@ -43,9 +43,9 @@ class TestKnockChp2(unittest.TestCase):
     
     def test_knock014(self):
         print("test knock014")
-        shownlines(10,'hightemp.txt','lines_shown.txt')
-        shownlines_unix(10,'hightemp.txt','lines_shown_unix.txt')
-        self.assertTrue('lines_shown.txt','lines_shown_unix',shallow=False)
+        shownlines(5,'hightemp.txt','lines_shown.txt')
+        shownlines_unix(5,'hightemp.txt','lines_shown_unix.txt')
+        self.assertTrue(filecmp.cmp('lines_shown.txt','lines_shown_unix.txt',shallow=False))
 
 
 if __name__=='__main__':
