@@ -8,9 +8,9 @@ def n_gram(target, n):
 
 
 if __name__ == "__main__":
-    str = "I am an NLPer"
-    char_ngram = str.replace(" ", "")
-    word_ngram = str.split()
+    s = "I am an NLPer"
+    char_ngram = s.replace(" ", "")
+    word_ngram = s.split()
     n = 2
 
     print(n_gram(char_ngram, n))

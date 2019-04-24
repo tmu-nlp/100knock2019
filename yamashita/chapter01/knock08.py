@@ -1,6 +1,6 @@
-def cipher(str):
+def cipher(s):
     result = ""
-    for c in str:
+    for c in s:
         if c.islower():
             result += chr(219 - ord(c))
         else:
@@ -10,6 +10,6 @@ def cipher(str):
 
 
 if __name__ == "__main__":
-    str = "I am a NLPer"
-    print(cipher(str))
-    print(cipher(cipher(str)))
+    s = "I am a NLPer"
+    print(cipher(s))
+    print(cipher(cipher(s)))
