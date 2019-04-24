@@ -6,6 +6,7 @@ from knock10 import count_file_lines_py, count_file_lines_unix
 from knock11 import convfile_tab2space, convfile_tab2space_unix
 from knock12 import extcolumn, extcolumn_unix
 from knock13 import mergefiles, mergefiles_unix
+from knock14 import shownlines, shownlines_unix
 
 class TestKnockChp2(unittest.TestCase):
     def test_knock010(self):
