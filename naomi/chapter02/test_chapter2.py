@@ -39,6 +39,13 @@ class TestKnockChp2(unittest.TestCase):
         mergefiles('col1.txt','col2.txt','merged.txt')
         mergefiles_unix('col1.txt','col2.txt','merged_unix.txt')
         self.assertTrue(filecmp.cmp('merged.txt','merged_unix.txt',shallow=False))
+    
+    def test_knock014(self):
+        print("test knock014")
+        shownlines(10,'lines_shown.txt')
+        shownlines_unix(10,'lines_shown_unix.txt')
+        self.assertTrue('lines_shown.txt','lines_shown_unix',shallow=False)
+
 
 if __name__=='__main__':
     unittest.main()
