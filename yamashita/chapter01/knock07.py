@@ -2,8 +2,8 @@ from string import Template
 
 
 def make_template(x, y, z):
-    str = Template("$hour時の$targetは$value")
-    return str.substitute(hour=x, target=y, value=z)
+    s = Template("$hour時の$targetは$value")
+    return s.substitute(hour=x, target=y, value=z)
 
 
 if __name__ == "__main__":
