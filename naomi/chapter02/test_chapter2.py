@@ -8,7 +8,7 @@ from knock12 import extcolumn, extcolumn_unix
 from knock13 import mergefiles, mergefiles_unix
 from knock14 import headfile, headfile_unix
 from knock15 import tailfile, tailfile_unix
-from konck17 import uniq_column, uniq_column_unix
+from knock17 import uniq_column, uniq_column_unix
 
 class TestKnockChp2(unittest.TestCase):
     def test_knock010(self):
@@ -62,8 +62,8 @@ class TestKnockChp2(unittest.TestCase):
     #     self.assertTrue(filecmp.cmp('split.txt','split_unix.txt',shallow=False))
 
     def test_knock017(self):
-        uniq_column('highttemp.txt',1,'uniq.txt')
-        uniq_column_unix('highttemp.txt',1,'uniq_unix.txt')
+        uniq_column(1,'hightemp.txt','uniq.txt')
+        uniq_column_unix(1,'hightemp.txt','uniq_unix.txt')
         self.assertTrue(filecmp.cmp('uniq.txt','uniq_unix.txt',shallow=False))
 
 if __name__=='__main__':
