@@ -10,6 +10,7 @@ from knock14 import headfile, headfile_unix
 from knock15 import tailfile, tailfile_unix
 from knock16 import splitfile, splitfile_unix
 from knock17 import uniq_column, uniq_column_unix
+from knock18 import sort_column, sort_column_unix
 
 class TestKnockChp2(unittest.TestCase):
     def test_knock010(self):
@@ -67,7 +68,12 @@ class TestKnockChp2(unittest.TestCase):
     #     uniq_column_unix(1,'hightemp.txt','uniq_unix.txt')
     #     self.assertTrue(filecmp.cmp('uniq.txt','uniq_unix.txt',shallow=False))
 
-    
+    def test_knock018(self):
+        print("test knock018")
+        sort_column(3,'hightemp.txt','sort.txt')
+        sort_column_unix(3,'hightemp.txt','sort_unix.txt')
+        self.assertTrue(filecmp.cmp('sort.txt','sort_unix.txt',shallow=False))
+
 
 if __name__=='__main__':
     unittest.main()
