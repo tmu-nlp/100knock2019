@@ -8,6 +8,7 @@ from knock12 import extcolumn, extcolumn_unix
 from knock13 import mergefiles, mergefiles_unix
 from knock14 import headfile, headfile_unix
 from knock15 import tailfile, tailfile_unix
+from knock16 import splitfile, splitfile_unix
 from knock17 import uniq_column, uniq_column_unix
 
 class TestKnockChp2(unittest.TestCase):
@@ -57,14 +58,14 @@ class TestKnockChp2(unittest.TestCase):
         
     # def test_knock016(self):
     #     print("test knock016")
-    #     splitfile(5,'hightemp.txt','folder_splitfiles')
-    #     splitfile_unix(5,'hightemp.txt','folder_splitfiles_unix')
-    #     self.assertTrue(filecmp.cmp('split.txt','split_unix.txt',shallow=False))
+    #     splitfile(5,'hightemp.txt','dir_splitfiles')
+    #     splitfile_unix(5,'hightemp.txt','dir_splitfiles_unix')
+    #     self.assertTrue(filecmp.dircmp('dir_splitfiles','dir_splitfiles_unix'))
 
-    def test_knock017(self):
-        uniq_column(1,'hightemp.txt','uniq.txt')
-        uniq_column_unix(1,'hightemp.txt','uniq_unix.txt')
-        self.assertTrue(filecmp.cmp('uniq.txt','uniq_unix.txt',shallow=False))
+    # def test_knock017(self):
+    #     uniq_column(1,'hightemp.txt','uniq.txt')
+    #     uniq_column_unix(1,'hightemp.txt','uniq_unix.txt')
+    #     self.assertTrue(filecmp.cmp('uniq.txt','uniq_unix.txt',shallow=False))
 
 if __name__=='__main__':
     unittest.main()
