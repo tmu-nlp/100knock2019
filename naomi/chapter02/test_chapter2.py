@@ -67,5 +67,7 @@ class TestKnockChp2(unittest.TestCase):
     #     uniq_column_unix(1,'hightemp.txt','uniq_unix.txt')
     #     self.assertTrue(filecmp.cmp('uniq.txt','uniq_unix.txt',shallow=False))
 
+    
+
 if __name__=='__main__':
     unittest.main()

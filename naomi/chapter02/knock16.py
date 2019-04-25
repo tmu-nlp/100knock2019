@@ -15,7 +15,7 @@ def splitfile(n: int, in_fname: str, dir_name: str):
             print(lines)
             f = open('div_'+str(i_file),'w+')
             f.writelines(lines[chnk_lines*i_file:chnk_lines*(i_file+1)])
-
+        
     return
 
 def splitfile_unix(n: int, in_fname: str, dir_name: str):
@@ -25,5 +25,5 @@ def splitfile_unix(n: int, in_fname: str, dir_name: str):
         lines=fin.readlines()
         n_lines=len(lines)
     chnk_lines=math.ceil(n_lines/n)
-    subprocess.run(['split','-l',str(chnk_lines),'-d',in_fname,dir_name+'/div_'])
+    subprocess.run(['split','-l',str(chnk_lines),in_fname,dir_name+'/div_'])
     return
