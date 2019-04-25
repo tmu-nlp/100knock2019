@@ -2,7 +2,7 @@
 
 import subprocess
 
-def extcolumn(nst_colmn, in_fname, out_fname):
+def extcolumn(nst_colmn: int, in_fname: str, out_fname: str):
     with open(in_fname) as fin, open(out_fname,'w') as fout:
             for line, l in enumerate(fin):
                 words=l.split('\t')
@@ -11,7 +11,7 @@ def extcolumn(nst_colmn, in_fname, out_fname):
     return
 
 
-def extcolumn_unix(nst_colmn,in_fname,out_fname):
+def extcolumn_unix(nst_colmn: int,in_fname: str,out_fname: str):
     nst_colmn=str(nst_colmn+1)
     with open(out_fname,'w') as fout:
         subprocess.run(["cut","-f",nst_colmn,"-d",'\t',in_fname],stdout=fout)
