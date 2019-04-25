@@ -6,7 +6,8 @@ from knock10 import count_file_lines_py, count_file_lines_unix
 from knock11 import convfile_tab2space, convfile_tab2space_unix
 from knock12 import extcolumn, extcolumn_unix
 from knock13 import mergefiles, mergefiles_unix
-from knock14 import shownlines, shownlines_unix
+from knock14 import headfile, headfile_unix
+from knock15 import tailfile, tailfile_unix
 
 class TestKnockChp2(unittest.TestCase):
     def test_knock010(self):
@@ -43,10 +44,16 @@ class TestKnockChp2(unittest.TestCase):
     
     def test_knock014(self):
         print("test knock014")
-        shownlines(5,'hightemp.txt','lines_shown.txt')
-        shownlines_unix(5,'hightemp.txt','lines_shown_unix.txt')
-        self.assertTrue(filecmp.cmp('lines_shown.txt','lines_shown_unix.txt',shallow=False))
+        headfile(5,'hightemp.txt','head.txt')
+        headfile_unix(5,'hightemp.txt','head_unix.txt')
+        self.assertTrue(filecmp.cmp('head.txt','head_unix.txt',shallow=False))
 
+    def test_knock015(self):
+        print("test knock015")
+        tailfile(5,'hightemp.txt','tail.txt')
+        tailfile_unix(5,'hightemp.txt','tail_unix.txt')
+        self.assertTrue(filecmp.cmp('tail.txt','tail_unix.txt',shallow=False))
+        
 
 if __name__=='__main__':
     unittest.main()
