@@ -11,7 +11,7 @@ def sort_column(col: int, in_fname: str, out_fname: str):
         for line in lines:
             cities.append(line.split())
 
-        sortedcities=sorted(cities, key=lambda x:x[2], reverse=True)
+        sortedcities=sorted(cities, key=lambda x:x[col-1], reverse=True)
 
         for line in sortedcities:
             print(line)
@@ -24,7 +24,7 @@ def sort_column_unix(col: int, in_fname: str, out_fname: str):
     with open(out_fname,'w') as fout:
 # https://unix.stackexchange.com/questions/104525/sort-based-on-the-third-column
         # subprocess.Popen(['sort','-k',str(col-1),','+str(col-1),in_fname], stdout=fout)
-        subprocess.run(['sort','-r','-k3',in_fname], stdout=fout)
+        subprocess.run(['sort','-r','-k'+str(col),in_fname], stdout=fout)
 
     return
 
