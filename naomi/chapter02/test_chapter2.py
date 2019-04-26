@@ -11,6 +11,7 @@ from knock15 import tailfile, tailfile_unix
 from knock16 import splitfile, splitfile_unix
 from knock17 import uniq_column, uniq_column_unix
 from knock18 import sort_column, sort_column_unix
+from knock19 import countfreq, countfreq_unix
 
 class TestKnockChp2(unittest.TestCase):
     def test_knock010(self):
@@ -74,6 +75,10 @@ class TestKnockChp2(unittest.TestCase):
         sort_column_unix(3,'hightemp.txt','sort_unix.txt')
         self.assertTrue(filecmp.cmp('sort.txt','sort_unix.txt',shallow=False))
 
+    def test_knock019(self):
+        countfreq(1,'hightemp.txt','count.txt')
+        countfreq_unix(1,'hightemp.txt','count_unix.txt')
+        self.assertTrue(filecmp.cmp('count.txt','count_unix.txt',shallow=False))
 
 if __name__=='__main__':
     unittest.main()
