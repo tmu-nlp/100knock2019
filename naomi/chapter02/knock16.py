@@ -12,9 +12,8 @@ def splitfile(n: int, in_fname: str, dir_name: str):
         n_lines=len(lines)
         chnk_lines=math.ceil(n_lines/n)
         for i_file in range(n):
-            print(lines)
-            f = open('div_'+str(i_file),'w+')
-            f.writelines(lines[chnk_lines*i_file:chnk_lines*(i_file+1)])
+            with open(dir_name+'/div_'+str(i_file),'w+') as f:
+                f.writelines(lines[chnk_lines*i_file:chnk_lines*(i_file+1)])
         
     return
 

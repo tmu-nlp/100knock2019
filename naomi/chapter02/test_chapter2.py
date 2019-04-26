@@ -1,7 +1,9 @@
 # python -m unittest discover
 import unittest
 import os
+from os.path import join, getsize
 import filecmp
+import subprocess
 from knock10 import count_file_lines_py, count_file_lines_unix
 from knock11 import convfile_tab2space, convfile_tab2space_unix
 from knock12 import extcolumn, extcolumn_unix
@@ -58,27 +60,37 @@ class TestKnockChp2(unittest.TestCase):
         tailfile_unix(5,'hightemp.txt','tail_unix.txt')
         self.assertTrue(filecmp.cmp('tail.txt','tail_unix.txt',shallow=False))
         
-    # def test_knock016(self):
-    #     print("test knock016")
-    #     splitfile(5,'hightemp.txt','dir_splitfiles')
-    #     splitfile_unix(5,'hightemp.txt','dir_splitfiles_unix')
-    #     self.assertTrue(filecmp.dircmp('dir_splitfiles','dir_splitfiles_unix'))
+    def test_knock016(self):
+        nsplit = 5
+        pythondir = 'dir_splitfiles'
+        unixdir = 'dir_splitfiles_unix'
+        print("test knock016")
+        splitfile(nsplit,'hightemp.txt',pythondir)
+        splitfile_unix(nsplit,'hightemp.txt',unixdir)
+
+        flistpy = os.listdir(pythondir)
+        flistunix = os.listdir(unixdir)
+
+        self.assertEqual(len(flistpy),len(flistunix))
+        for i in range(nsplit):
+            print('iterator={0}'.format(i))
+            self.assertTrue(filecmp.cmp(pythondir+'/'+flistpy[i],unixdir+'/'+flistunix[i]))
 
     # def test_knock017(self):
     #     uniq_column(1,'hightemp.txt','uniq.txt')
     #     uniq_column_unix(1,'hightemp.txt','uniq_unix.txt')
     #     self.assertTrue(filecmp.cmp('uniq.txt','uniq_unix.txt',shallow=False))
 
-    def test_knock018(self):
-        print("test knock018")
-        sort_column(3,'hightemp.txt','sort.txt')
-        sort_column_unix(3,'hightemp.txt','sort_unix.txt')
-        self.assertTrue(filecmp.cmp('sort.txt','sort_unix.txt',shallow=False))
+    # def test_knock018(self):
+    #     print("test knock018")
+    #     sort_column(3,'hightemp.txt','sort.txt')
+    #     sort_column_unix(3,'hightemp.txt','sort_unix.txt')
+    #     self.assertTrue(filecmp.cmp('sort.txt','sort_unix.txt',shallow=False))
 
-    def test_knock019(self):
-        countfreq(1,'hightemp.txt','count.txt')
-        countfreq_unix(1,'hightemp.txt','count_unix.txt')
-        self.assertTrue(filecmp.cmp('count.txt','count_unix.txt',shallow=False))
+    # def test_knock019(self):
+    #     countfreq(1,'hightemp.txt','count.txt')
+    #     countfreq_unix(1,'hightemp.txt','count_unix.txt')
+    #     self.assertTrue(filecmp.cmp('count.txt','count_unix.txt',shallow=False))
 
 if __name__=='__main__':
     unittest.main()
