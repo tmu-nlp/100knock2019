@@ -97,10 +97,10 @@ class TestKnockChp2(unittest.TestCase):
         sort_column_unix(3,'hightemp.txt','sort_unix.txt')
         self.assertTrue(filecmp.cmp('sort.txt','sort_unix.txt',shallow=False))
 
-    # def test_knock019(self):
-    #     countfreq(1,'hightemp.txt','count.txt')
-    #     countfreq_unix(1,'hightemp.txt','count_unix.txt')
-    #     self.assertTrue(filecmp.cmp('count.txt','count_unix.txt',shallow=False))
+    def test_knock019(self):
+        countfreq(1,'hightemp.txt','count.txt')
+        countfreq_unix(1,'hightemp.txt','count_unix.txt')
+        self.assertTrue(filecmp.cmp('count.txt','count_unix.txt',shallow=False))
 
 if __name__=='__main__':
     unittest.main()
