@@ -76,16 +76,26 @@ class TestKnockChp2(unittest.TestCase):
             print('iterator={0}'.format(i))
             self.assertTrue(filecmp.cmp(pythondir+'/'+flistpy[i],unixdir+'/'+flistunix[i]))
 
-    # def test_knock017(self):
-    #     uniq_column(1,'hightemp.txt','uniq.txt')
-    #     uniq_column_unix(1,'hightemp.txt','uniq_unix.txt')
-    #     self.assertTrue(filecmp.cmp('uniq.txt','uniq_unix.txt',shallow=False))
+    def test_knock017(self):
+        uniq_column(1,'hightemp.txt','uniq.txt')
+        uniq_column_unix(1,'hightemp.txt','uniq_unix.txt')
+        with open('uniq.txt') as pyf, open('uniq_unix.txt') as unixf:
+            items_py = []
+            items_unix = []
+            lines_py = pyf.readlines()
+            lines_unix = unixf.readlines()
+            for item in lines_py:
+                items_py.append(item)
+            for item in lines_unix:
+                items_unix.append(item)
+        # self.assertTrue(filecmp.cmp('uniq.txt','uniq_unix.txt',shallow=False))
+        self.assertCountEqual(items_py,items_unix)
 
-    # def test_knock018(self):
-    #     print("test knock018")
-    #     sort_column(3,'hightemp.txt','sort.txt')
-    #     sort_column_unix(3,'hightemp.txt','sort_unix.txt')
-    #     self.assertTrue(filecmp.cmp('sort.txt','sort_unix.txt',shallow=False))
+    def test_knock018(self):
+        print("test knock018")
+        sort_column(3,'hightemp.txt','sort.txt')
+        sort_column_unix(3,'hightemp.txt','sort_unix.txt')
+        self.assertTrue(filecmp.cmp('sort.txt','sort_unix.txt',shallow=False))
 
     # def test_knock019(self):
     #     countfreq(1,'hightemp.txt','count.txt')
