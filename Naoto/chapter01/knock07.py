@@ -7,3 +7,6 @@ nlp07(12, "気温", 22.4)
 #     return '{}時の{}は{}'.format(x, y, z)
 
 # print(nlp07_1(12, "気温", 22.4))
+
+def a(a,b,c):
+    retrun 1

@@ -13,3 +13,7 @@ def typoglycemia_sentence(sentence: str) -> str:
 
 print(typoglycemia_sentence("On January 24th Apple computer will introduce Macintosh"))
 print(typoglycemia_sentence("I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind ."))
+
+
+
+

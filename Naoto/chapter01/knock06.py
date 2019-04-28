@@ -16,6 +16,8 @@ def nlp06():
     Y = "se" in y
     print("seが'{0}'に含まれているか: {1}".format(str1, X))
     print("seが'{0}'に含まれているか: {1}".format(str2, Y))
+    print("se" in x)
+    print("se" in y)
 
 
 nlp06()
