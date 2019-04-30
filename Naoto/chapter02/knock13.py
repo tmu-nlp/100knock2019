@@ -11,10 +11,13 @@ if __name__ == "__main__":
         for i in range(len(col1_list)):
             if col1_list[i] != "\n":
                 col1_2_merge_13.write(col1_list[i])
+                # print(col1_list[i], end = "")
             else:
                 col1_2_merge_13.write("\t")
+                # print("\t", end = "")
                 while True:
                     col1_2_merge_13.write(col2_list[count])
+                    # print(col2_list[count], end = "")
                     if col2_list[count] == "\n":
                         count += 1
                         break
