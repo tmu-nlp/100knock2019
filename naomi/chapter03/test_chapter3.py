@@ -4,6 +4,7 @@ import filecmp
 import re
 from knock20 import jsons2dict
 from knock21 import extcategories
+from knock22 import extcatnames
 
 class TestKnockChp3(unittest.TestCase):
     def test20_jsons2dict(self):
@@ -34,6 +35,22 @@ class TestKnockChp3(unittest.TestCase):
 
 
             self.assertEqual(refcategories,mycategories)
+        
+    def test22_extcatnames(self):
+        print('test22_extcatnames')
+        in_file ='test1.json'
+
+        with open(in_file) as fin:
+            mydict = jsons2dict(fin,'南オセチア')
+            refcatnames=[]
+            refcatnames.append('南オセチア|*')
+            refcatnames.append('グルジアの地理')
+            refcatnames.append('カフカス')
+            refcatnames.append('オセット')
+
+            mycatnames = extcatnames(mydict['text'])
+            self.assertEqual(refcatnames,mycatnames)
+        
 
 
 if __name__=='__main__':
