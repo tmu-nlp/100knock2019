@@ -44,7 +44,7 @@ class TestKnockChp3(unittest.TestCase):
         with open(in_file) as fin:
             mydict = jsons2dict(fin,'南オセチア')
             refcatnames=[]
-            refcatnames.append('南オセチア|*')
+            refcatnames.append('南オセチア')
             refcatnames.append('グルジアの地理')
             refcatnames.append('カフカス')
             refcatnames.append('オセット')
