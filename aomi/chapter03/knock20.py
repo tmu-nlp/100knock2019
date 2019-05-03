@@ -1,4 +1,3 @@
-import re
 from json import loads
 
 with open('jawiki-country.json', 'r') as jawiki_country_file, \
