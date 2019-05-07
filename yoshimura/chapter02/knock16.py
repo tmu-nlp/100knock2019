@@ -14,7 +14,7 @@ args = parser.parse_args()
 with open(args.input_file, "r") as f:
     num_line = math.ceil(sum(1 for line in f) / args.N)
 
-with open(args.input_file) as fr:
+with open(args.input_file, "r") as fr:
     for i in range(args.N):
         lines = [fr.readline() for line in range(num_line)]
         with open(f"result16-{i + 1}", "w") as fw:

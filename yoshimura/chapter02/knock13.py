@@ -12,7 +12,7 @@ parser.add_argument("output_file")
 args = parser.parse_args()
 
 # 読み込み
-with open(args.input_file1) as f1, open(args.input_file2) as f2:
+with open(args.input_file1, "r") as f1, open(args.input_file2) as f2:
     lines = [line1.rstrip() + "\t" + line2 for line1, line2 in zip(f1, f2)]
 
 # 書き込み

@@ -9,7 +9,7 @@ parser.add_argument("input_file")
 parser.add_argument("N", type=int, help="先頭のN行")
 args = parser.parse_args()
 
-with open(args.input_file) as f:
+with open(args.input_file, "r") as f:
     for i in range(args.N):
         print(f.readline().rstrip())
 
