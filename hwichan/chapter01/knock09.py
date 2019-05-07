@@ -8,9 +8,9 @@ def Typoglycemia(str):
     rand_list = []
     for i in str_list:
         if len(i) > 3:
-            j = list(i[1:len(i)-1])
+            j = list(i[1:len(i)-1]) #最初と最後の文字は切り捨て、一文字ずつ配列にする
             random.shuffle(j)
-            rand_list.append(i[0]+''.join(j)+i[len(i)-1])
+            rand_list.append(i[0]+''.join(j)+i[len(i)-1]) #join:配列の文字を結合 ''の中の文字を区切り文字にすることができる、今回は空文字
         else:
             rand_list.append(i)
 
