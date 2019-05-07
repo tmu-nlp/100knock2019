@@ -6,6 +6,9 @@
 適当な英語の文（例えば "I couldn't believe that I could actually understand
 what I was reading : the phenomenal power of the human mind ."）を与え，
 その実行結果を確認せよ．
+
+* タイポグリセミア
+https://ja.wikipedia.org/wiki/%E3%82%BF%E3%82%A4%E3%83%9D%E3%82%B0%E3%83%AA%E3%82%BB%E3%83%9F%E3%82%A2
 '''
 
 
