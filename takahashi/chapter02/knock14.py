@@ -14,6 +14,4 @@ if __name__ == "__main__":
     n = int(args[1])
 
     target = read_file("hightemp.txt")
-    print(head(n, target))
-
-
+    print(head(target, n))

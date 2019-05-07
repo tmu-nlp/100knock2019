@@ -6,9 +6,9 @@ from knock10 import read_file
 from knock13 import write_file
 import sys
 
-def split(target: str, line: int) -> None:
+def split(target: str, n: int) -> None:
     target = target.split("\n")
-    for count in range(line):
+    for count in range(len(target) // n + 1):
         output = "\n".join(target[count*n : count*n+n])
         write_file(f"hightemp_{count}.txt", output)
 
