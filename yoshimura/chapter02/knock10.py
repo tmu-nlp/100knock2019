@@ -5,6 +5,6 @@
 import sys
 
 with open(sys.argv[1], "r") as f:
-    print(sum(1 for line in f))
+    print(sum(1 for _ in f))
 
 # wc -l hightemp.txt
