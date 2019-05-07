@@ -8,9 +8,9 @@ def sort_by_third_column(target: str) -> str:
     target = target.split("\n")
     # 行で分割されている各要素を tab で分割する
     target = [t.split("\t") for t in target]
-
+    
     # 各行を 3 番目の要素を key としてソートする
-    sorted(target, key=lambda x:x[2])
+    target = sorted(target, key=lambda x:x[2], reverse=True)
 
     return "\n".join(["\t".join(elem) for elem in target])
 

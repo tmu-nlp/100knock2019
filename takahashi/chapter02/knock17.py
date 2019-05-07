@@ -4,13 +4,9 @@
 from knock10 import read_file
 
 def uniq_first_column(target: str) -> str:
-    target = target.split("\n")
-    column = []
-    for col1 in target:
-        column.append(col1.split("\t")[0])
-
-    return set(column)
+    return {col1.split("\t")[0] for col1 in target.split("\n")}
 
 if __name__ == "__main__":
     target = read_file("hightemp.txt")
-    print(uniq_first_column(target))
+    for val in list(uniq_first_column(target)):
+        print(val)
