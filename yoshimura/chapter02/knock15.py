@@ -9,10 +9,9 @@ parser.add_argument("input_file")
 parser.add_argument("N", type=int, help="末尾のN行")
 args = parser.parse_args()
 
-with open(args.input_file) as f:
-    lines = [line for line in f]
-
-for line in lines[-args.N:]:
-    print(line.rstrip())
+line_num = sum(1 for _ in open(args.input_file, "r"))
+for i, line in enumerate(open(args.input_file, "r"), 1):
+    if i > line_num - args.N:
+        print(line.rstrip())
 
 # tail -n N hightemp.txt
