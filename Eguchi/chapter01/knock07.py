@@ -5,7 +5,12 @@ x =12
 y = "気温"
 z = 22.4
 
-def dis(x, y, z):
-    print(format(x) + "時の" +format(y) +"は"  + format(z))
+def dis(x, y , z ):
+    
+    return ("{ x }時の{ y }は{ z }")
 
-dis(x, y, z)
+    ##print(format(x) + "時の" +format(y) +"は"  + format(z))
+
+
+print ( dis(x, y, z) )
+
