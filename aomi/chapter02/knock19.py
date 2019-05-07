@@ -8,3 +8,5 @@ with open('hightemp.txt', 'r') as hightemp_file:
 my_dict = sorted(my_dict.items(), key = lambda x: -x[1])
 for key, value in my_dict:
     print(key + ":" + str(value))
+
+# cut -f 1 hightemp.txt | sort | uniq -c | sort -k 1r

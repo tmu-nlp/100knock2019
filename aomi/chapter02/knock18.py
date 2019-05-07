@@ -9,3 +9,5 @@ with open('hightemp.txt', 'r') as hightemp_file:
 sorted(col3_list)
 for i in col3_list:
     print(line_list[i[1]], end = '')
+
+# sort -k 3r hightemp.txt
