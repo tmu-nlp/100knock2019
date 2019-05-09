@@ -72,7 +72,8 @@ class TestKnockChp3(unittest.TestCase):
         refdict['略名'] = 'チュニジア'
         refdict['日本語国名'] = 'チュニジア共和国'
         refdict['公式国名'] = "{{lang|ar|'''الجمهورية التونسية'''}}"
-        refdict['GDP値元'] = "496億<ref name=\"economy\">IMF Data and Statistics 2009年4月27日閲覧</ref>"
+        refdict['GDP値元'] = "496億<ref name=\"economy\">\
+            IMF Data and Statistics 2009年4月27日閲覧</ref>"
         refdict['注記'] = ''
 
         with open(in_file) as fin:

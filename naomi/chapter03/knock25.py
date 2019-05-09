@@ -31,7 +31,8 @@ def main():
     with gzip.open('jawiki-country.json.gz', 'rt', encoding='utf-8') as fs:
 
         data = jsons2dict(fs, 'イギリス')
-        template = exttemplate(data['text'])
+        t = exttemplate(data['text'])
+        print(t)
     return
 
 
