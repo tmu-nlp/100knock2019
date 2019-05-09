@@ -9,7 +9,7 @@ def extsections(text: str) -> list:
     for m in re.finditer(pattern, text, flags=(re.MULTILINE)):
         level = int(m.group(0).count('=')/2 - 1)
         newstr = m.group(0).lstrip('='*level+'= ').rstrip(' ='+'='*level)
-        print(m.group(0),newstr,level)
+        # print(m.group(0),newstr,level)
 
         sectionlist.append([level, newstr])
     return sectionlist
