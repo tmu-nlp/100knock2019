@@ -1,22 +1,36 @@
 import re
 import gzip
+from collections import defaultdict
 from knock20 import jsons2dict
 
 
-def exttemplate(text: str) -> str:
+def exttemplate(text: str) -> dict:
+
+    td = defaultdict(lambda: 0)
 
     entries = re.split('\n+', text)
 
-    p = re.compile(r"""
-    (?P<quote>[('")]).*?(?P=quote)
+    p1 = re.compile(r"""
+    (^\| (?P<key>.*?)
+    \s=\s
+    (?P<value>.*$))
+    """, re.VERBOSE)
+    p2 = re.compile(r"""
+    '(?P<text>.*?)'
     """, re.VERBOSE)
 
     for entry in entries:
-        print(entry)
-        m = p.match(entry)
+        m = p1.match(entry)
         if m:
-            print(m.group('quote'))
-    return 'test'
+            key = m.group('key').strip('|')
+            key = key.strip()
+            value = m.group('value').strip()
+            # remove emphasis markers
+            value2 = p2.sub(r'\g<text>', value)
+            print('key: {0}, value: {1}'.format(key, value2))
+            td[key] = value2
+
+    return td
 
 
 def main():
@@ -24,8 +38,8 @@ def main():
 
         data = jsons2dict(fs, 'イギリス')
         t = exttemplate(data['text'])
-        print(t)
-    return
+
+    return None
 
 
 if __name__ == '__main__':
