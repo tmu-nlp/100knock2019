@@ -46,7 +46,7 @@ def main():
         data = jsons2dict(fs, 'イギリス')
         t = exttemplate(data['text'])
 
-    return None
+    return t
 
 
 if __name__ == '__main__':
