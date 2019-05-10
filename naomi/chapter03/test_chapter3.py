@@ -93,7 +93,7 @@ class TestKnockChp3(unittest.TestCase):
 
         with open(in_file) as fin:
             mydict = jsons2dict(fin, 'チュニジア')
-            tempdict = knock26.exttemplate(mydict['text'])
+            tempdict = exttemplate(mydict['text'])
         self.assertEqual(refdict, tempdict)
 
 
