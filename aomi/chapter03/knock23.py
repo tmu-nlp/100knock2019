@@ -1,7 +1,8 @@
 import re
 
-with open('jawiki-UK.txt') as UK_file:
-    pattern = '(=+)(.+?)(=+)'
+pattern = re.compile(r'(=+)(.+?)\1')
+
+with open('jawiki-UK.json') as UK_file:
     for line in UK_file:
         result = re.match(pattern, line)
         if result:
