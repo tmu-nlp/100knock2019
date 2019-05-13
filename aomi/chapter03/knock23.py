@@ -1,6 +1,6 @@
 import re
 
-pattern = re.compile(r'(=+)(.+?)\1')
+pattern = re.compile(r'(=+)(.+?)=+')
 
 with open('jawiki-UK.json') as UK_file:
     for line in UK_file:
