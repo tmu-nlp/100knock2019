@@ -13,16 +13,10 @@ from knock27 import inner_link_removal
 def MediaWiki_markup_removal(dic_: {}) -> {}:
     for k, v in dic_.items():
         dic_[k] = re.sub("\[.+\]", "", v)
-        dic_[k] = re.sub("<.+?>", "" ,dic_[k])
-        # dic_[k] = re.sub("", "" ,dic_[k])
-        # dic_[k] = re.sub("", "" ,dic_[k])
-        # dic_[k] = re.sub("", "" ,dic_[k])
-        # dic_[k] = re.sub("", "" ,dic_[k])
-        # dic_[k] = re.sub("", "" ,dic_[k])
-        # dic_[k] = re.sub("", "" ,dic_[k])
-        # dic_[k] = re.sub("", "" ,dic_[k])
-        # dic_[k] = re.sub("", "" ,dic_[k])
-        # dic_[k] = re.sub("", "" ,dic_[k])
+        dic_[k] = re.sub("<.+?>", "", dic_[k])
+        # dic_[k] = re.sub("", "", dic_[k])
+        # dic_[k] = re.sub("", "", dic_[k])
+        # dic_[k] = re.sub("", "", dic_[k])
     return dic_
 
 
