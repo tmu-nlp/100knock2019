@@ -8,21 +8,25 @@ import re
 
 def template_extract(input_file: str) -> {}:
     dic_ = {}
-    status = 1
+    start = 1
     with open(input_file) as fp:
         json_data = fp.readline()
-        while status:
-            start = re.search("^{{基礎情報", json_data)
-            if start is not None:
-                while status:
+        while start:
+            basic_info = re.search("^\{\{基礎情報", json_data)
+            if basic_info is not None:
+                while start:
                     json_data = fp.readline()
-                    end = re.search("^}}", json_data)
-                    if end is not None:
-                        status = 0
+                    finish = re.search("^\}\}", json_data)
+                    if finish is not None:
+                        start = 0
                         break
-                    template = re.search("^\|(\S*) = (.*)", json_data)
-                    if template is not None:
-                        dic_[template.group(1)] = template.group(2)
+                    basic_info = re.search("^\|(\S+?)\s=\s(.+)", json_data)
+                    if basic_info is not None:
+                        dic_[basic_info.group(1)] = basic_info.group(2)
+                        key = basic_info.group(1)
+                    line_start = re.search("^\*+(.+)", json_data)
+                    if line_start is not None:
+                        dic_[key] += str(line_start.group(1))
             json_data = fp.readline()
     return dic_
 

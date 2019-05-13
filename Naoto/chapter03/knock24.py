@@ -1,15 +1,23 @@
-import re
-num = 0
-with open("jawiki-イギリス.json") as fp:
-    json_data = fp.readline()
-    while json_data:
-        media_http_https = re.search("http(s:|:)[a-zA-Z0-9_\./-]+", json_data)
-        media_jpg_jpeg = re.search("[^\s:]+\.(jpe?g|JPE?G)", json_data)
-        # if media_http_https is not None:
-        #     print(media_http_https.group())
-        if media_jpg_jpeg is not None:
-            print(media_jpg_jpeg.group())
-            num += 1
-        json_data = fp.readline()
+'''
+24. ファイル参照の抽出
+記事から参照されているメディアファイルをすべて抜き出せ．
+'''
 
-print(num)
+import re
+
+
+def file_reference_extract(file_name: str) -> {}:
+    list_ = []
+    with open(file_name, 'r') as fp:
+        json_data = fp.readline()
+        while json_data:
+            media_file = re.search("\[\[(ファイル|File):(.+?)\|thumb\S+", json_data)
+            if media_file is not None:
+                list_.append(media_file.group(2))
+            json_data = fp.readline()
+    return list_
+
+
+if __name__ == "__main__":
+    list_ = file_reference_extract("jawiki-イギリス.json")
+    print(list_)
