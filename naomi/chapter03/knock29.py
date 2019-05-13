@@ -5,7 +5,7 @@ from knock28 import exttemplate
 
 
 def geturl_flagimg(d: dict) -> str:
-    
+
     S = requests.Session()
 
     URL = "https://ja.wikipedia.org/wiki/api.php"
