@@ -2,21 +2,28 @@
 # 記事から参照されているメディアファイルをすべて抜き出せ．
 
 from knock20 import get_country_data
+from typing import List
 import re
 
-def extract_media_file(target: str) -> str:
-    # [[File: ... ]] の行を抽出する
-    regex = r"^\[\[File:.+\]\]$"
-    matches = re.findall(regex, target, re.MULTILINE)
+# [[File:Battle of Waterloo 1815.PNG|thumb|left|[[ワーテルローの戦い]]
+#   -> Battle of Waterloo 1815.PNG
+# [[ファイル:Royal Coat of Arms of the United Kingdom.svg|85px|イギリスの国章]]
+#   -> Royal Coat of Arms of the United Kingdom.svg
+def get_media_file(target: str) -> List[str]:
+    pattern = r"""
+        \[\[             # [[
+        (?:File|ファイル) # 非キャプチャ, File または ファイル に一致
+        :                # :
+        (.+?)            # キャプチャ対象のリンク
+        \|               # | 
+        (?:.+)           # | 以降の非キャプチャ対象
+        \]\]             # ]]
+        """
+    regex = re.compile(pattern, re.MULTILINE | re.VERBOSE)
+    return regex.findall(target)
 
-    # メディアファイル名以外の文字を除去する
-    result = []
-    for match in matches:
-        res = re.sub("\[\[File:", "", match.split("|")[0])
-        result.append(res)   
-    return result
 
 if __name__ == "__main__":
     target = get_country_data("イギリス")
-    for media in extract_media_file(target):
+    for media in get_media_file(target):
         print(media)

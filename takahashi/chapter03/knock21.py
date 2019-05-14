@@ -5,13 +5,20 @@ from knock20 import get_country_data
 from typing import List
 import re
 
-# '[[Category:' で始まって ']]' で終わる行をすべて取得する
-def extract_category(target: str) -> List[str]:
-    regex = r"^\[\[Category:.+\]\]$"
-    result = re.findall(regex, target, re.MULTILINE)
-    return result
+
+def get_category(target: str) -> List[str]:
+    pattern = r"""
+        ^             # 先頭
+        \[\[Category: # [[Category
+        .+            # 任意の文字の 1 文字以上続く
+        \]\]          # ]]
+        $             # 末尾
+        """
+    regex = re.compile(pattern, re.MULTILINE | re.VERBOSE)
+    return regex.findall(target)
+
 
 if __name__ == "__main__":
     target = get_country_data("イギリス")
-    for category in extract_category(target):
+    for category in get_category(target):
         print(category)
