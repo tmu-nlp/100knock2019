@@ -18,7 +18,7 @@ def file_tail(file_name, N):
     '''
     from collections import deque
     with open(file_name, 'r') as f:
-        return deque(f, N)
+        return deque(f, N)              # 常に N 個保持する
 
 
 if __name__ == '__main__':

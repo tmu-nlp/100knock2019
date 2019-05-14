@@ -5,3 +5,5 @@ with open('hightemp.txt', 'r') as hightemp_file:
         line = line.split('\t')
         set_list.add(line[0])
 print(len(set_list))
+
+# cut -f 1 hightemp.txt | sort | uniq

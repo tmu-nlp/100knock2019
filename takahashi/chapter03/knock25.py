@@ -5,26 +5,26 @@ from knock20 import get_country_data
 from typing import Dict
 import re
 
-def extract_basic_info(target: str) -> str:
-    regex = r"(?<=\{\{基礎情報\s国\s).+?(?=\}\}\n)"
-    return re.search(regex, target, re.DOTALL).group()
 
-def remove_newline_from_break_tags(target: str) -> str:
-    return re.sub("<br/>\n", "<br>", target)
+def get_template(target: str) -> Dict[str, str]:
+    pattern = r"""
+        ^            # 先頭
+        \|           # |
+        (.+?)        # キャプチャ対象 : フィールド名
+        \s           # 空白
+        =            # =
+        \s           # 空白
+        (.+?)        # キャプチャ対象 : 値
+        (?=          # positive lookahead
+            \n       # 改行
+            (?:\||}) # キャプチャ非対象 : | または }
+        )            # グループ終了
+        """
+    regex = re.compile(pattern, re.MULTILINE | re.DOTALL | re.VERBOSE)
+    return { data[0]:data[1] for data in regex.findall(target)}
 
-def extract_name_and_value(target: str) -> Dict[str, str]:
-    target = remove_newline_from_break_tags(target)
-
-    regex = r"^\|(.+) = (.+)"
-    matches = re.findall(regex, target, re.MULTILINE)
-
-    result = {}
-    for match in matches:
-        result[match[0]] = match[1]
-    return result
 
 if __name__ == "__main__":
     target = get_country_data("イギリス")
-    basic_info = extract_basic_info(target)
-    for name, value in extract_name_and_value(basic_info).items():
-        print(f"{name}: {value}")
+    for field, value in get_template(target).items():
+        print(f"{field}\t{value}")

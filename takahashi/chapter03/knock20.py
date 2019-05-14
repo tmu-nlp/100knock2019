@@ -5,12 +5,17 @@
 import re
 import json
 
+
 def get_country_data(country: str) -> str:
+    res = ""
     with open("jawiki-country.json", "r") as file:
         for f in file:
             json_data = json.loads(f)
             if json_data["title"] == country:
-                return json_data["text"]
+                res = json_data["text"]
+                break
+    return res
+
 
 if __name__ == "__main__":
     print(get_country_data("イギリス"))
