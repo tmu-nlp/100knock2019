@@ -1,4 +1,4 @@
-#記事のカテゴリ名を（行単位ではなく名前で）抽出せよ．
+#記事から参照されているメディアファイルをすべて抜き出せ．
 
 import gzip
 import json
@@ -18,8 +18,10 @@ filename=r"\Users\Koya\Documents\Lab\jawiki-country.json.gz"
 
 sentence = search(filename, "イギリス").split("\n")
 
+#[[ファイル:The Fabs.JPG|thumb|200px|[[ビートルズ]]]]
+
 for line in sentence:
-    line=re.search(r"Category:(?P<category>.+?)(\||])", line)  ##[[Category:イギリス|*]]
+    line = re.search("ファイル:(?P<filetitle>[^|]+)\|", line)
     if line:
-        print(line.group("category"))
+        print(line.group("filetitle"))
 
