@@ -4,7 +4,6 @@ import gzip
 import json
 import re
 
-
 def search (filename, keyword):
     with gzip.open( filename,'rt',encoding="utf-8") as opendedfile:
         for line in opendedfile:

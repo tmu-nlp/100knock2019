@@ -31,6 +31,7 @@ for line in sentence:
         temp = re.sub(r"\[\[([^]]+)\]\]", r"", temp)
         temp = re.sub(r"<.*?>\（\）", r"", temp) ##<br />（）
         temp =  re.sub(r"\[.*?\]", r"", temp) ##URL
+        temp =  re.sub(r"</?ref>", r"", temp) ##<ref>
 
 
             

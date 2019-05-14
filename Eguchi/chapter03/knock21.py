@@ -1,3 +1,5 @@
+#記事中でカテゴリ名を宣言している行を抽出せよ．
+
 import gzip
 import json
 import re
