@@ -1,5 +1,5 @@
 import re
-from knock20 import get_json
+from knock20 import get_text
 # 正規表現...
 pattern = re.compile(r'''^\|(.+?)\s = \s(.+?)(?=\n(\||\}))''',
                      re.MULTILINE | re.DOTALL | re.VERBOSE)
@@ -9,7 +9,7 @@ pattern_clean = re.compile(r'\[(.+?)\]')
 # この段階だと、<ref></ref>が残る...
 pattern_single_html = re.compile(r'<(.+?)>')
 basic_info = {}
-s = get_json()
+s = get_text()
 
 for match in pattern.finditer(s):
     temp = match.group(2).replace("''''", "").replace(
