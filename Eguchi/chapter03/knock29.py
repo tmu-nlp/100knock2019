@@ -49,6 +49,10 @@ def json_search(json_data):
             ret_dict[k] = v
     return ret_dict
 
+
+#Flag of the United Kingdom.svg
+
+
 url = "https://en.wikipedia.org/w/api.php"
 payload = {"action": "query",
            "titles": "File:{}".format(infodict[u"国旗画像"]),
