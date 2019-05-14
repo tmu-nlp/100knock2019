@@ -14,4 +14,4 @@ with open('hightemp.txt', 'r') as f:
 
 with open('out19', 'w') as f:
     for k, v in sorted(cnt.items(), key=lambda x: (x[1], x[0]), reverse=True):
-        print(f'   {v} {k}', file=f)
+        print(f'{v:4d} {k}', file=f)
