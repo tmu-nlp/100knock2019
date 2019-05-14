@@ -1,7 +1,8 @@
 import re
+from typing import Generator
 
 
-def extract_sentence(filename='./nlp.txt'):
+def extract_sentence(filename: str = './nlp.txt') -> Generator[str, None, None]:
     """
     1文ごとに分割する
     """

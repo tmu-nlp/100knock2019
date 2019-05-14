@@ -1,22 +1,8 @@
 import xml.etree.ElementTree as ET
 
-
 # java -cp "/usr/local/lib/stanford-corenlp-full-2014-08-27/*" -Xmx2g edu.stanford.nlp.pipeline.StanfordCoreNLP
 # -annotators tokenize,ssplit,pos,lemma,ner,parse,dcoref -file nlp.txt
-
-def load_token(filename='./nlp.txt.xml'):
-    """
-    xml から token を読み取り token 毎のクラスを返す
-    """
-    tree = ET.parse(filename)
-    for sentence in tree.findall('.//sentences/sentence'):
-        for token in sentence.iter('token'):
-            yield Token(sentence_id=sentence.attrib['id'],
-                        token_id=token.attrib['id'],
-                        word=token.find('word').text,
-                        lemma=token.find('lemma').text,
-                        pos=token.find('POS').text,
-                        ner=token.find('NER').text)
+from typing import Generator
 
 
 class Token:
@@ -33,7 +19,23 @@ class Token:
         return self.ner == 'PERSON'
 
 
+def load_token(filename: str = './nlp.txt.xml') -> Generator[Token, None, None]:
+    """
+    xml から token を読み取り token 毎のクラスを返す
+    """
+    tree = ET.parse(filename)
+    for sentence in tree.findall('.//sentences/sentence'):
+        for token in sentence.iter('token'):
+            yield Token(sentence_id=sentence.attrib['id'],
+                        token_id=token.attrib['id'],
+                        word=token.find('word').text,
+                        lemma=token.find('lemma').text,
+                        pos=token.find('POS').text,
+                        ner=token.find('NER').text)
+
+
 if __name__ == '__main__':
     import itertools
+
     for token in itertools.islice(load_token(), 50):
         print(token.word)

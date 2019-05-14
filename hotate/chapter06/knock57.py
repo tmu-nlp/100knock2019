@@ -1,9 +1,11 @@
+from typing import Any
+
 from graphviz import Digraph
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 
 
-def load_coll_dep(filename='./nlp.txt.xml'):
+def load_coll_dep(filename: str = './nlp.txt.xml') -> defaultdict[Any, list]:
     tree = ET.parse(filename)
 
     sentences = defaultdict(list)

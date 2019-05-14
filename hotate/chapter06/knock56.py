@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+from typing import Generator, Any
 
 from knock53 import load_token
 
@@ -15,7 +16,7 @@ class Mention:
         self.representative_id = representative_id
 
 
-def load_mention(filename='./nlp.txt.xml'):
+def load_mention(filename: str = './nlp.txt.xml') -> Generator[Mention, None, None]:
     """
     参照表現を取得
     """
@@ -36,7 +37,7 @@ def load_mention(filename='./nlp.txt.xml'):
             )
 
 
-def make_sentence_dict(filename='./nlp.txt.xml'):
+def make_sentence_dict(filename: str = './nlp.txt.xml') -> defaultdict[Any, list]:
     """
     １文毎の token の辞書を作成
     """

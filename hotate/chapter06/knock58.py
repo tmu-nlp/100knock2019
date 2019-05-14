@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+from typing import Generator, Tuple
 
 
-def extract_svo(filename='./nlp.txt.xml'):
+def extract_svo(filename: str = './nlp.txt.xml') -> Generator[Tuple[str, str, str], None, None]:
     tree = ET.parse(filename)
 
     for sentence in tree.findall('.//sentences/sentence'):

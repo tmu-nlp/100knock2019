@@ -1,7 +1,9 @@
+from typing import Generator
+
 from knock50 import extract_sentence
 
 
-def extract_word(filename='./nlp.txt'):
+def extract_word(filename: str = './nlp.txt') -> Generator[str, None, None]:
     """
     単語ごとに返す
     """

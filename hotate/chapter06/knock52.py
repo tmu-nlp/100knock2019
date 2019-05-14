@@ -1,8 +1,10 @@
+from typing import Generator
+
 from stemming.porter2 import stem
 from knock51 import extract_word
 
 
-def word_stem(filename='./nlp.txt'):
+def word_stem(filename: str = './nlp.txt') -> Generator[str, None, None]:
     """
     単語と stem のペアを返す
     """

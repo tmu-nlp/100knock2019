@@ -1,9 +1,12 @@
 import xml.etree.ElementTree as ET
+from typing import Generator, Pattern
 
 import regex
 
 
-def search_np(parse_list, np_list, pattern):
+def search_np(parse_list: list,
+              np_list: list,
+              pattern: Pattern) -> None:
     """
     再帰的にS式を読み取り， NP が含まれるものを抽出する．
     """
@@ -24,7 +27,7 @@ def search_np(parse_list, np_list, pattern):
         search_np([s for s in regex.findall(pattern, parse_ext) if np in s], np_list, pattern)
 
 
-def load_parse(filename='./nlp.txt.xml'):
+def load_parse(filename: str = './nlp.txt.xml') -> Generator[ET.Element, None, None]:
     tree = ET.parse(filename)
     for parse in tree.iter('parse'):
         yield parse
