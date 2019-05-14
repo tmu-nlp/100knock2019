@@ -1,6 +1,5 @@
 import xml.etree.ElementTree as ET
 from collections import defaultdict
-from operator import attrgetter
 
 from knock53 import load_token
 
