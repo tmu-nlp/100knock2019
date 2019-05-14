@@ -1,10 +1,15 @@
 import re
-from knock20 import get_json
+from knock20 import get_text
 
-pattern = re.compile(r'^\[\[File:(.+?)(?:\|.+)?\]\]$')
+# 正規表現
+# 1. [[File:で始まるもの
+# 2. (.+?)で任意の文字列
+# 3. (\|.+)?で|の任意の回数の繰り返し
+# 4. ]]で閉じる
+# Categoryとほぼ同じ
+pattern = re.compile(r'^\[\[File:(.+?)(\|.+)?\]\]$')
 
-for s in get_json().split("\n"):
+for s in get_text().split("\n"):
     text = pattern.search(s)
     if text is not None:
-        ret = text.group(0)
-        print(ret)
+        print(text.group(0))
