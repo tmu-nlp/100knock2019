@@ -3,3 +3,6 @@ with open("hightemp.txt", "r") as ipt, open("col1.txt", "w") as col1,\
     for line in ipt:
         col1.write(line[0] + "\n")
         col2.write(line[1] + "\n")
+        print(line)
+
+#file = 

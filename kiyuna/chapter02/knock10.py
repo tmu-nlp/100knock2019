@@ -6,7 +6,9 @@
 
 def count_lines(file_name):
     with open(file_name, 'r') as f:
-        return sum(1 for _ in f)
+        # ジェネレータを使う
+        # 参考: https://www.python.org/dev/peps/pep-0289/
+        return sum(1 for _ in f)        # 速度とメモリ，共に良い
 
         # 以下の方法は，メモリに優しくない
         # return len(f.readlines())                     => 24

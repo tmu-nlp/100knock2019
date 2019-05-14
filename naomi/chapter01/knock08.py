@@ -1,14 +1,12 @@
 
 def cipher(str):
     out=''
-    i=0
     for c in str:
         if c.islower():
-            out+=chr(219-ord(str[i]))
-            print(str[i])
+            out+=chr(219-ord(c))
+            print(c)
         else:
-            out+=str[i]
-        i+=1
+            out+=c
     print(out)
     return out
 

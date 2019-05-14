@@ -1,9 +1,11 @@
+#冒頭n行のnを指定
 n = int(input())
 with open('hightemp.txt', 'r') as f:
-    index = 0
-    for row in f:
-        if index < n:
+    for i, row in enumerate(f):
+        # 行数がnより少ない場合は表示する
+        if i < n:
             print(row.replace("\n", ""))
-        index += 1
+        else:
+            break
 
 # head -n 4 "hightemp.txt"

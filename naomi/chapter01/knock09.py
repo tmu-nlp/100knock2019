@@ -1,7 +1,7 @@
 import random
 
-def typoglycemia(str):
-    split_str=str.split(" ")
+def typoglycemia(string1):
+    split_str=string1.split(" ")
     out=[]
     for i in range(0,len(split_str)):
         # consider a word
@@ -15,4 +15,5 @@ def typoglycemia(str):
         else:
             out.append(word+" ")
     print(''.join(out))
-typoglycemia("I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind.")
+typoglycemia("I couldn't believe that I could actually understand what \
+    I was reading : the phenomenal power of the human mind.")

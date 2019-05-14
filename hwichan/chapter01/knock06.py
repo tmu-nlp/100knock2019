@@ -7,7 +7,7 @@ def n_gram1(str,num):
 
 x = "paraparaparadise"
 y = "paragraph"
-x_list = set(n_gram1(x,2))
+x_list = set(n_gram1(x,2)) #set:配列を集合にする、同じものは一つずつ残す
 y_list = set(n_gram1(y,2))
 
 list1 = x_list | y_list

@@ -1,7 +1,8 @@
 import re
-str='Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.'
-
-words=re.split('[ ,.]',str)
+string1='Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.'
+string1 = string1.replace(',', '')
+string1 = string1.replace('.', '')
+words=re.split(' ',string1)
 
 
 list=[]
