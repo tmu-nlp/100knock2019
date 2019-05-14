@@ -1,7 +1,7 @@
 import plyvel
 
 
-def sum_japan():
+def sum_japan() -> int:
     db = plyvel.DB('./db_knock60/')
     sum_ = sum(1 for name, area in db if area == b'Japan')
     db.close()

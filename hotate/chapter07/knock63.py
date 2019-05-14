@@ -16,7 +16,7 @@ def make_db():
         pass
 
 
-def search_tags(name):
+def search_tags(name: str) -> str:
     db = plyvel.DB('./db_knock63/')
     try:
         tags = json.loads(db.get(name.encode('utf-8')))

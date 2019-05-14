@@ -2,14 +2,20 @@ from pymongo import MongoClient
 import pymongo
 import json
 
+from pymongo.cursor import Cursor
+
 
 class ArtistDB:
-    def __init__(self, db_name='knock64', collection_name='artist'):
+    def __init__(self,
+                 db_name: str = 'knock64',
+                 collection_name: str = 'artist') -> None:
         self.client = MongoClient()
         self.db = self.client[db_name]
         self.collection = self.db[collection_name]
 
-    def insert_artist(self, filename='./artist.json', block_size=5000):
+    def insert_artist(self,
+                      filename: str = './artist.json',
+                      block_size: int = 5000) -> None:
         block = list()
         for i, line in enumerate(open(filename, 'r')):
             artist_dic = json.loads(line)
@@ -25,10 +31,10 @@ class ArtistDB:
         self.collection.create_index([('tags.value', pymongo.ASCENDING)])
         self.collection.create_index([('rating.value', pymongo.ASCENDING)])
 
-    def artist_info(self, name):
+    def artist_info(self, name: str) -> Cursor:
         return self.collection.find({"name": name})
 
-    def search_aliases(self, name):
+    def search_aliases(self, name: str) -> Cursor:
         return self.collection.find({"aliases.name": name})
 
 

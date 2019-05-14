@@ -1,7 +1,7 @@
 import plyvel
 
 
-def search_area(name):
+def search_area(name: str) -> str:
     db = plyvel.DB('./db_knock60/')
     try:
         area = db.get(name.encode('utf-8')).decode('utf-8')
