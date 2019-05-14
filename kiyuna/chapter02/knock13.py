@@ -4,7 +4,9 @@
 元のファイルの 1 列目と 2 列目をタブ区切りで並べたテキストファイルを作成せよ．
 確認には paste コマンドを用いよ．
 '''
-import knock12      # col1.txt, col2.txt を作成するため, -B をつけて実行
+import knock12      # col1.txt, col2.txt を作成するため
+# -B をつけて実行すると __pychache__ が作成されなくなる
+#   -> https://devlights.hatenablog.com/entry/2018/02/23/124719
 
 
 def marge_cols(sep, *fnames):
