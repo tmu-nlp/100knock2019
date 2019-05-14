@@ -15,7 +15,7 @@ class Token:
         self.ner = ner
         self.display = display
 
-    def is_person(self):
+    def is_person(self) -> bool:
         return self.ner == 'PERSON'
 
 

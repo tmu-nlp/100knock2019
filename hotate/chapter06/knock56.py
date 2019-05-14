@@ -1,13 +1,18 @@
 import xml.etree.ElementTree as ET
 from collections import defaultdict
-from typing import Generator, Any
+from typing import Generator, Any, Tuple, DefaultDict
 
-from knock53 import load_token
+from knock53 import load_token, Token
 
 
 class Mention:
-    def __init__(self, sentence_id=None, start=None, end=None, mention=None, representative=False,
-                 representative_id=None):
+    def __init__(self,
+                 sentence_id: str = None,
+                 start: str = None,
+                 end: str = None,
+                 mention: str = None,
+                 representative: bool = False,
+                 representative_id: str = None) -> None:
         self.sentence_id = sentence_id
         self.start = int(start)
         self.end = int(end)
@@ -37,7 +42,7 @@ def load_mention(filename: str = './nlp.txt.xml') -> Generator[Mention, None, No
             )
 
 
-def make_sentence_dict(filename: str = './nlp.txt.xml') -> defaultdict[Any, list]:
+def make_sentence_dict(filename: str = './nlp.txt.xml') -> DefaultDict[Any, list]:
     """
     １文毎の token の辞書を作成
     """
@@ -48,7 +53,7 @@ def make_sentence_dict(filename: str = './nlp.txt.xml') -> defaultdict[Any, list
     return sentences
 
 
-def make_mention(filename='./nlp.txt.xml'):
+def make_mention(filename: str = './nlp.txt.xml') -> Tuple[DefaultDict[Any, str], DefaultDict[Any, list]]:
     """
     参照表現，代表参照表現の辞書を作成
 
@@ -70,7 +75,7 @@ def make_mention(filename='./nlp.txt.xml'):
     return representatives_dict, mentions_dict
 
 
-def make_text(tokens):
+def make_text(tokens: Token) -> str:
     """
     token のリストから単語の文字列を作成
     """
