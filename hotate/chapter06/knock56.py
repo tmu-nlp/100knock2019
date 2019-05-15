@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 from collections import defaultdict
-from typing import Generator, Any, Tuple, DefaultDict
+from typing import Generator, Any, Tuple, DefaultDict, List
 
 from knock53 import load_token, Token
 
@@ -33,13 +33,13 @@ def load_mention(filename: str = './nlp.txt.xml') -> Generator[Mention, None, No
             representative_id += 1
 
         yield Mention(
-                sentence_id=mention.find('sentence').text,
-                start=mention.find('start').text,
-                end=mention.find('end').text,
-                mention=mention.find('text').text,
-                representative=mention.attrib,
-                representative_id=representative_id
-            )
+            sentence_id=mention.find('sentence').text,
+            start=mention.find('start').text,
+            end=mention.find('end').text,
+            mention=mention.find('text').text,
+            representative=mention.attrib,
+            representative_id=representative_id
+        )
 
 
 def make_sentence_dict(filename: str = './nlp.txt.xml') -> DefaultDict[Any, list]:
@@ -75,7 +75,7 @@ def make_mention(filename: str = './nlp.txt.xml') -> Tuple[DefaultDict[Any, str]
     return representatives_dict, mentions_dict
 
 
-def make_text(tokens: Token) -> str:
+def make_text(tokens: List[Token]) -> str:
     """
     token のリストから単語の文字列を作成
     """
@@ -83,8 +83,7 @@ def make_text(tokens: Token) -> str:
     return ' '.join(map(lambda token: token.word, filter(lambda t: t.display, tokens)))
 
 
-if __name__ == '__main__':
-
+def main():
     # 文の辞書作成
     # sentences = { id : token_list }
     sentences = make_sentence_dict()
@@ -99,7 +98,7 @@ if __name__ == '__main__':
         for mention in mention_list:
 
             # 置換する部分のみの単語を取得
-            tokens = sentences[mention.sentence_id][mention.start-1: mention.end-1]
+            tokens = sentences[mention.sentence_id][mention.start - 1: mention.end - 1]
 
             # 実際に置換するのは最初の単語のみ
             token_replace = tokens[0]
@@ -116,3 +115,7 @@ if __name__ == '__main__':
 
     for tokens in sentences.values():
         print(f"{make_text(tokens)}")
+
+
+if __name__ == '__main__':
+    main()

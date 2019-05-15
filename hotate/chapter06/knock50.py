@@ -18,6 +18,10 @@ def extract_sentence(filename: str = './nlp.txt') -> Generator[str, None, None]:
             yield sentence
 
 
-if __name__ == '__main__':
+def main():
     for sentence in extract_sentence():
         print(sentence)
+
+
+if __name__ == '__main__':
+    main()

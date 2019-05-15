@@ -1,5 +1,5 @@
+import itertools
 import xml.etree.ElementTree as ET
-
 # java -cp "/usr/local/lib/stanford-corenlp-full-2014-08-27/*" -Xmx2g edu.stanford.nlp.pipeline.StanfordCoreNLP
 # -annotators tokenize,ssplit,pos,lemma,ner,parse,dcoref -file nlp.txt
 from typing import Generator
@@ -34,8 +34,10 @@ def load_token(filename: str = './nlp.txt.xml') -> Generator[Token, None, None]:
                         ner=token.find('NER').text)
 
 
-if __name__ == '__main__':
-    import itertools
-
-    for token in itertools.islice(load_token(), 50):
+def main(stop):
+    for token in itertools.islice(load_token(), stop):
         print(token.word)
+
+
+if __name__ == '__main__':
+    main(50)

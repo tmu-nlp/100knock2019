@@ -1,6 +1,8 @@
+import itertools
 from typing import Generator
 
 from stemming.porter2 import stem
+
 from knock51 import extract_word
 
 
@@ -14,7 +16,10 @@ def word_stem(filename: str = './nlp.txt') -> Generator[str, None, None]:
         yield pair
 
 
-if __name__ == '__main__':
-    import itertools
-    for pair in itertools.islice(word_stem(), 100):
+def main(stop):
+    for pair in itertools.islice(word_stem(), stop):
         print(pair)
+
+
+if __name__ == '__main__':
+    main(100)

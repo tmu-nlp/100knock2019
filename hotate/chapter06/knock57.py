@@ -1,8 +1,9 @@
+import xml.etree.ElementTree as ET
+from collections import defaultdict
+from itertools import islice
 from typing import Any, DefaultDict
 
 from graphviz import Digraph
-import xml.etree.ElementTree as ET
-from collections import defaultdict
 
 
 def load_coll_dep(filename: str = './nlp.txt.xml') -> DefaultDict[Any, list]:
@@ -20,15 +21,17 @@ def load_coll_dep(filename: str = './nlp.txt.xml') -> DefaultDict[Any, list]:
     return sentences
 
 
-if __name__ == '__main__':
-    from itertools import islice
-
+def main(stop):
     sentences = load_coll_dep()
 
     G = Digraph(format='png')
     G.attr('node', shape='circle')
 
-    for i, sentence in islice(sentences.items(), 5):
+    for i, sentence in islice(sentences.items(), stop):
         for pair in sentence:
             G.edge(pair[0], pair[1])
     G.render('binary_tree_graphviz')
+
+
+if __name__ == '__main__':
+    main()

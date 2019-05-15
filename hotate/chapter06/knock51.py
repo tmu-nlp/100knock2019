@@ -1,3 +1,4 @@
+import itertools
 from typing import Generator
 
 from knock50 import extract_sentence
@@ -12,7 +13,10 @@ def extract_word(filename: str = './nlp.txt') -> Generator[str, None, None]:
             yield word
 
 
-if __name__ == '__main__':
-    import itertools
-    for word in itertools.islice(extract_word(), 10):
+def main(stop):
+    for word in itertools.islice(extract_word(), stop):
         print(word)
+
+
+if __name__ == '__main__':
+    main(10)

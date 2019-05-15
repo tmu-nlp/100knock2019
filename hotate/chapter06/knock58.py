@@ -29,6 +29,10 @@ def extract_svo(filename: str = './nlp.txt.xml') -> Generator[Tuple[str, str, st
                 yield s, v, o
 
 
-if __name__ == '__main__':
+def main():
     for s, v, o in extract_svo():
         print(s, v, o, sep='\t')
+
+
+if __name__ == '__main__':
+    main()
