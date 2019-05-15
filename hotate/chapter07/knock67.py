@@ -1,9 +1,9 @@
-
-from knock64 import ArtistDB
 import json
 
+from knock64 import ArtistDB
 
-if __name__ == '__main__':
+
+def main():
     db = ArtistDB()
     while True:
         aliases_name = input('Please enter an alias name. (quit command: "q")\n')
@@ -17,8 +17,11 @@ if __name__ == '__main__':
                     print(json.dumps(info, indent=2))
             else:
                 print('The alias name is not registered.')
-            print('-'*100)
+            print('-' * 100)
 
+
+if __name__ == '__main__':
+    main()
 
 # mongo
 # use knock64

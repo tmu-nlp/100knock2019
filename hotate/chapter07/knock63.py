@@ -1,6 +1,6 @@
-import plyvel
 import json
-import pickle
+
+import plyvel
 
 
 def make_db():
@@ -26,7 +26,7 @@ def search_tags(name: str) -> str:
     return tags
 
 
-if __name__ == '__main__':
+def main():
     make_db()
     while True:
         input_text = input('Please enter an artist name. (quit command: "q")\nartist name: ')
@@ -35,4 +35,8 @@ if __name__ == '__main__':
         else:
             tags = search_tags(input_text)
             print(f'tags : {tags}')
-            print('-'*100)
+            print('-' * 100)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,7 +1,8 @@
-from pymongo import MongoClient
-import pymongo
 import json
+from itertools import islice
 
+import pymongo
+from pymongo import MongoClient
 from pymongo.cursor import Cursor
 
 
@@ -38,12 +39,14 @@ class ArtistDB:
         return self.collection.find({"aliases.name": name})
 
 
-if __name__ == '__main__':
-    from itertools import islice
-
+def main():
     artist_db = ArtistDB()
     artist_db.insert_artist()
     artist_db.make_index()
 
     for post in islice(artist_db.collection.find(), 50):
         print(post)
+
+
+if __name__ == '__main__':
+    main()
