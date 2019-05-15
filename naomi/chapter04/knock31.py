@@ -12,8 +12,9 @@ def surfaceverb(sentences: list) -> list:
 
 def main():
     path = 'neko.txt.mecab'
-    print(importmecab(path))
     surfaces = surfaceverb(importmecab(path))
+    with open('knock31.txt', 'w', encoding='utf-8') as f:
+        print(surfaces, file=f)
 
 
 if __name__ == '__main__':

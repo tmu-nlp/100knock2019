@@ -25,11 +25,10 @@ def importmecab(path: str) -> list:
                 'pos1': cols[1]
             }
 
-            print(words[0], cols[6], words[1], cols[1])
             # 文のリストにタプルを追加
             sentence.append(morphs)
 
-            return sentences
+        return sentences
 
 
 def main():
@@ -37,7 +36,6 @@ def main():
 
     importmecab(path)
     
-
 
 if __name__ == '__main__':
     main()
