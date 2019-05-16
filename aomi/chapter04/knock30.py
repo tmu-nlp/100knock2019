@@ -15,4 +15,5 @@ with open('neko.txt.mecab', 'r') as mecab_file:
         res.append(tmp)
 
         if col1[0] == '。':
+            print(res)
             res = []
