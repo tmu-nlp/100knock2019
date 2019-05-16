@@ -2,6 +2,9 @@ from knock30 import importmecab
 import knock36 as knock36
 import matplotlib.pyplot as plt
 
+# 38. ヒストグラム
+# 単語の出現頻度のヒストグラム（横軸に出現頻度，縦軸に出現頻度をとる単語の種類数を棒グラフで表したもの）を描け．
+
 
 def zipf(wdict: dict):
 
