@@ -29,7 +29,8 @@ for line in sentence:
     if line:
         temp = re.sub(r"'{2,5}", r"", line.group("body"))
         temp = re.sub(r"\[\[([^]]+)\]\]", r"", temp)
-        temp = re.sub(r"<.*?>", r"", temp) ##<br />（）
+        temp = re.sub(r"<.*?>
+        ", r"", temp) ##<br />（）
         temp =  re.sub(r"\[.*?\]", r"", temp) ##URL
         temp =  re.sub(r"</?ref>", r"", temp) ##<ref>
 

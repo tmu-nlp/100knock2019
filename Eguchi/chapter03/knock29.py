@@ -37,6 +37,7 @@ for line in sentence:
 for i in infodict:
     print("%s: %s" %(i, infodict[i]))
 
+
 def json_search(json_data):
     ret_dict = {}
     for k, v in json_data.items():
