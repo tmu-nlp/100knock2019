@@ -5,8 +5,12 @@ import json
 
 
 class ArtistDB:
-    def __init__(self, db_name='knock64', collection_name='artist'):
-        self.client = MongoClient()
+    def __init__(self,
+                 db_name: str = 'knock64',
+                 collection_name: str = 'artist',
+                 host: str = 'localhost',
+                 port: int = 27017) -> None:
+        self.client = MongoClient(host, port)
         self.db = self.client[db_name]
         self.collection = self.db[collection_name]
 
