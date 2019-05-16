@@ -1,7 +1,10 @@
 from knock30 import importmecab
 
+# 33. サ変名詞
+# サ変接続の名詞をすべて抽出せよ．
 
-def baseverb(sentences: list) -> list:
+
+def ext_sahen(sentences: list) -> list:
     surfaces = []
     for morphs in sentences:
         for m in morphs:
@@ -13,7 +16,7 @@ def baseverb(sentences: list) -> list:
 
 def main():
     path = 'neko.txt.mecab'
-    surfaces = baseverb(importmecab(path))
+    surfaces = ext_sahen(importmecab(path))
     with open('knock33.txt', 'w', encoding='utf-8') as f:
         print(surfaces, file=f)
 

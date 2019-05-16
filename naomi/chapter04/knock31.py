@@ -1,5 +1,8 @@
 from knock30 import importmecab
 
+# 31. 動詞
+# 動詞の表層形をすべて抽出せよ．
+
 
 def surfaceverb(sentences: list) -> list:
     surfaces = []

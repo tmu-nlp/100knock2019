@@ -1,5 +1,8 @@
 from knock30 import importmecab
 
+# 32. 動詞の原形
+# 動詞の原形をすべて抽出せよ．
+
 
 def baseverb(sentences: list) -> list:
     surfaces = []

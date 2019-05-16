@@ -1,7 +1,10 @@
 from knock30 import importmecab
 
+# 35. 名詞の連接
+# 名詞の連接（連続して出現する名詞）を最長一致で抽出せよ．
 
-def baseverb(sentences: list) -> list:
+
+def ext_rensetu(sentences: list) -> list:
     rensetu = []
     for morphs in sentences:
         # 新しい文をみるときにmeisiをリセット
@@ -21,7 +24,7 @@ def baseverb(sentences: list) -> list:
 
 def main():
     path = 'neko.txt.mecab'
-    surfaces = baseverb(importmecab(path))
+    surfaces = ext_rensetu(importmecab(path))
     with open('knock35.txt', 'w', encoding='utf-8') as f:
         print(surfaces, file=f)
 

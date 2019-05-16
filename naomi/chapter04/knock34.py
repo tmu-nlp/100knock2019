@@ -1,7 +1,10 @@
 from knock30 import importmecab
 
+# 34. 「AのB」
+# 2つの名詞が「の」で連結されている名詞句を抽出せよ．
 
-def baseverb(sentences: list) -> list:
+
+def ext_np(sentences: list) -> list:
     surfaces = []
     for morphs in sentences:
         for i in range(2, len(morphs)):
@@ -16,7 +19,7 @@ def baseverb(sentences: list) -> list:
 
 def main():
     path = 'neko.txt.mecab'
-    surfaces = baseverb(importmecab(path))
+    surfaces = ext_np(importmecab(path))
     with open('knock34.txt', 'w', encoding='utf-8') as f:
         print(surfaces, file=f)
 
