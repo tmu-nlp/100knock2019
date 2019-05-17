@@ -5,8 +5,6 @@ with open(path + r"\col1.txt", mode = "r")as col1:
     col1list = col1.read().split("\n")
 
 
-
-
 with open(path + r"\col2.txt", mode = "r") as col2:
     col2list = col2.read().split("\n")
 
