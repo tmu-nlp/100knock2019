@@ -17,7 +17,7 @@ def word_frequency(mode="_"):
         if mode == "w":
             for k, v in sorted(word_freq_dic.items()):
                 fp.write(k + " " + str(v) + "\n")
-    return sorted(word_freq_dic.items(), key=lambda x: x[1], reverse=True)
+    return word_freq_dic
 
 
 if __name__ == "__main__":

@@ -5,13 +5,12 @@
 
 
 import matplotlib.pyplot as mpt
-from knock30 import morphines_read
 from knock36 import word_frequency
 
 
 def frequet_word_graph_n(n: str):
-    morphines, sentences = morphines_read()
     word_freq_dic = word_frequency()
+    word_freq_dic = sorted(word_freq_dic.items(), key=lambda x: x[1], reverse=True)
     count = 0
     x = []
     y = []
@@ -24,8 +23,6 @@ def frequet_word_graph_n(n: str):
         count += 1
     mpt.bar(x, y)
     mpt.show()
-    # print(x)
-    # print(y)
 
 
 if __name__ == "__main__":
