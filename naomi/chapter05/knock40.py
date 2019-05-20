@@ -51,8 +51,9 @@ def importmorphlists(path: str) -> list:
 
             # Morphオブジェクトを作ってリストに追加
             morphs.append(Morph(surface, base, pos, pos1))
-
-        mlists.append(morphs)
+        
+        if morphs != []:
+            mlists.append(morphs)
 
     return mlists
 
