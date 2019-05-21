@@ -10,7 +10,7 @@ def extractkaku(clist: list):
             # １文節ずつ
             for chunk in chunks:
                 # この文節が動詞を持つならば、この文節にかかる文節に含まれる助詞をリスト
-                pp = [chunks[i].pp() for i in chunk.srcs
+                pp = [chunks[i].pp for i in chunk.srcs
                       if chunk.hasverb() is True]
 
                 # 助詞を辞書順に並び替え

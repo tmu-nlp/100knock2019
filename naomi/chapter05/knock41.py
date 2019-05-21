@@ -30,6 +30,8 @@ class Chunk:
         # 文節のテキスト
         self.text = ''.join([m.surface for m in self.morphs])
 
+        self.pp = self.returnpp()
+
     def print(self):
         print(self.text, self.dst)
 
@@ -60,7 +62,7 @@ class Chunk:
             return ''
 
     # 一番右の助詞を返す
-    def pp(self):
+    def returnpp(self):
         josi = [morph.base for morph in self.morphs if morph.pos == '助詞']
         if josi != []:
             return josi[-1]
