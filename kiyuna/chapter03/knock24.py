@@ -5,14 +5,15 @@
 import re
 
 
-def extract_patterns():
+def extract_file_names():
     ptn1 = r'([^<{]+\.)(?i)(png|gif|jpg|jpeg|xcf|pdf|mid|ogg|svg|djvu)'
     reg1 = re.compile(ptn1)
     ptn2 = r'(.+)\s*[=|:]+?\s*(?P<File_name>.+)'
     reg2 = re.compile(ptn2)
     res = []
-    with open('wiki_England.txt') as f:
+    with open('wiki_UK.txt') as f:
         for line in f:
+            print(reg1.findall(line))
             for name, ext in reg1.findall(line):
                 if '/' not in name:
                     res.append(reg2.match(name).group('File_name') + ext)
@@ -35,7 +36,7 @@ if __name__ == '__main__':
     # => 「{{PDFlink|[http://www.mod.uk/（略）/modara_0405_s1_resources.pdf」
     #    「<ref>[http://www.atkearney.com/（略）Present+and+Future-GCI+2014.pdf」
     #     といったファイルも引っかかってしまう
-    fnames = extract_patterns()
+    fnames = extract_file_names()
     print(f"\033[32m[+] found {len(fnames)} files\033[00m")
     print(*fnames, sep='\n')
 

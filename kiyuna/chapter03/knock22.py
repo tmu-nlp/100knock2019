@@ -9,7 +9,7 @@ import pprint
 def extract_patterns(pattern):
     res = []
     reg = re.compile(pattern)
-    with open('wiki_England.txt') as f:
+    with open('wiki_UK.txt') as f:
         for line in f:
             m = reg.search(line)
             if m:
