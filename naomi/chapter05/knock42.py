@@ -7,7 +7,7 @@ def extractkakari(clist: list):
         for chunks in clist:
             words = [chunk.text for chunk in chunks]
             for i, chunk in enumerate(chunks):
-                print('{0}/t{1}'.format(words[i], words[chunk.dst]), file=f)
+                print('\t'.join([words[i], words[chunk.dst]]), file=f)
 
 
 def main():
