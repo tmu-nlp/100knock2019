@@ -18,9 +18,9 @@ def extract_wiki(title):
 
 def main():
     article = extract_wiki(title='イギリス')
-    with open('wiki_England.txt', 'w') as f:
+    with open('wiki_UK.txt', 'w') as f:
         f.write(article)
-    print('[+] wiki_England.txt', file=sys.stderr)
+    print('[+] wiki_UK.txt', file=sys.stderr)
 
 
 if __name__ == '__main__':

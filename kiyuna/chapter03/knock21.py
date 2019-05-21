@@ -9,7 +9,7 @@ import pprint
 def extract_lines(pattern):
     res = []
     reg = re.compile(pattern)
-    with open('wiki_England.txt') as f:
+    with open('wiki_UK.txt') as f:
         for line in map(lambda x: x.rstrip(), f):
             if reg.fullmatch(line):
                 res.append(line)

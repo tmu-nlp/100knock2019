@@ -8,7 +8,7 @@ import re
 def extract_sections(pattern):
     res = []
     reg = re.compile(pattern)
-    with open('wiki_England.txt') as f:
+    with open('wiki_UK.txt') as f:
         for line in f:
             m = reg.match(line)
             # m = re.search(r'^' + pattern, line)

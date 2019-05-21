@@ -105,15 +105,19 @@ def remove_asterisks_in_ref(d: OrderedDict) -> OrderedDict:
             res[key], sub = m.group(1, 2)
             cnt = defaultdict(int)
             new_keys = []
+            prev_lv = 0
             for e in m.group(3).strip().split('\n'):
                 ast, txt = re.match('(\**)([^\*]+)', e).group(1, 2)
                 lv = len(ast)
+                if prev_lv > lv:
+                    cnt[lv + 1] = 0
                 cnt[lv] += 1
                 new_k = f'{sub}'
                 for i in range(1, lv + 1):
                     new_k += f'-{cnt[i]:02d}'
                 new_keys.append(new_k)
                 res[new_k] = txt
+                prev_lv = lv
             for i, k in enumerate(new_keys, start=1):
                 res_keys.insert(res_keys.index(key) + i, k)
     return OrderedDict((k, res[k]) for k in res_keys)

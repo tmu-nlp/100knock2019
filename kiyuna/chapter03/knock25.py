@@ -10,7 +10,7 @@ from collections import OrderedDict
 
 
 def extract_infobox():
-    with open('wiki_England.txt') as f:
+    with open('wiki_UK.txt') as f:
         pattern = r'{{基礎情報[^|]+(?P<Infobox_body>.+?)}}\n'
         match = re.search(pattern, f.read(), re.DOTALL)
         info_body = match.group('Infobox_body')
