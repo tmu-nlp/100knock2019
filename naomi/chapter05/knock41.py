@@ -32,6 +32,22 @@ class Chunk:
 
     def print(self):
         print(self.text, self.dst)
+    
+    def hasnoun(self) -> bool:
+        # set False for default
+        flag = False
+        for m in self.morphs:
+            if m.pos == '名詞':
+                flag = True
+        return flag
+
+    def hasverb(self) -> bool:
+        # set False for default
+        flag = False
+        for m in self.morphs:
+            if m.pos == '動詞':
+                flag = True
+        return flag
 
 
 def importchunklists(path: str) -> list:
