@@ -17,7 +17,7 @@ def del_stamp(str):
     return str
 
 if __name__ == '__main__':
-    jawiki_country = open("./jawiki-country.json", "r")
+    jawiki_country = open("/Users/hongfeiwang/100knock2019/wanghongfei/chapter03/jawiki-country.json", "r")
     for line in jawiki_country:
         json_line = json.loads(line)
         if "イギリス" in json_line["title"]:

@@ -13,7 +13,7 @@ for section in section_name:
     for item in section:
         if item == "=":
                 count += 1
-    section_level[section] = int(count / 2)
+    section_level[section] = int(count / 2) - 1
     count = 0
 print(section_level)
 
