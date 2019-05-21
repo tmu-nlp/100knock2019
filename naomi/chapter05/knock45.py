@@ -13,6 +13,9 @@ def extractkaku(clist: list):
                 pp = [chunks[i].pp() for i in chunk.srcs
                       if chunk.hasverb() is True]
 
+                # 助詞を辞書順に並び替え
+                pp.sort()
+
                 # 動詞にかかる助詞が存在するならばファイルに動詞、助詞を書き込み
                 if pp != []:
                     print('\t'.join([chunk.predicate(), ' '.join(pp)]), file=f)
