@@ -32,7 +32,8 @@ class Chunk:
 
     def print(self):
         print(self.text, self.dst)
-    
+
+    # 名詞を持つかどうか
     def hasnoun(self) -> bool:
         # set False for default
         flag = False
@@ -41,6 +42,7 @@ class Chunk:
                 flag = True
         return flag
 
+    # 動詞を持つかどうか
     def hasverb(self) -> bool:
         # set False for default
         flag = False
@@ -48,6 +50,22 @@ class Chunk:
             if m.pos == '動詞':
                 flag = True
         return flag
+
+    # 述語（一番左の動詞）を返す
+    def predicate(self) -> str:
+        verbs = [morph.base for morph in self.morphs if morph.pos == '動詞']
+        if verbs != []:
+            return verbs[0]
+        else:
+            return ''
+
+    # 一番右の助詞を返す
+    def pp(self):
+        josi = [morph.base for morph in self.morphs if morph.pos == '助詞']
+        if josi != []:
+            return josi[-1]
+        else:
+            return ''
 
 
 def importchunklists(path: str) -> list:
@@ -84,7 +102,7 @@ def importchunklists(path: str) -> list:
 
                 # featureを取り出す
                 feature = tok.attrib['feature'].split(',')
-                
+
                 base = feature[6]
                 pos = feature[0]
                 pos1 = feature[1]
@@ -92,7 +110,7 @@ def importchunklists(path: str) -> list:
 
                 # Morphオブジェクトを作ってリストに追加
                 morphs.append(Morph(surface, base, pos, pos1))
-        
+
             if morphs != []:
                 linkedby = [i for i, dst in enumerate(dsts) if dst == id]
                 chunks.append(Chunk(morphs, dst, linkedby))
