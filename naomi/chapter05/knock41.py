@@ -26,10 +26,12 @@ class Chunk:
         self.dst = dst
         # 係り元文節インデックス番号のリスト
         self.srcs = srcs
-    
+
+        # 文節のテキスト
+        self.text = ''.join([m.surface for m in self.morphs])
+
     def print(self):
-        text = ''.join([m.surface for m in self.morphs])
-        print(text, self.dst)
+        print(self.text, self.dst)
 
 
 def importchunklists(path: str) -> list:
@@ -54,13 +56,13 @@ def importchunklists(path: str) -> list:
             morphs = []
 
             # このChunkの文節番号
-            id = chunk.attrib['id']
+            id = int(chunk.attrib['id'])
 
             # このChunkの係り先文節番号
-            dst = chunk.attrib['link']
+            dst = int(chunk.attrib['link'])
 
             # この文中のChunkの係り先文節番号を追加
-            dsts.extend(dst)
+            dsts.append(dst)
 
             for tok in chunk.iter('tok'):
 
