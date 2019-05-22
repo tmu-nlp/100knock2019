@@ -28,6 +28,9 @@ class ArtistDB:
                 block = []
         self.collection.insert_many(block)
 
+    def initial_collection(self):
+        self.collection.drop()
+
     def make_index(self):
         self.collection.create_index([('name', pymongo.ASCENDING)])
         self.collection.create_index([('aliases.name', pymongo.ASCENDING)])
@@ -43,6 +46,7 @@ class ArtistDB:
 
 def main():
     artist_db = ArtistDB()
+    artist_db.initial_collection()
     artist_db.insert_artist()
     artist_db.make_index()
 
@@ -52,3 +56,9 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# mongodb の立ち上げ
+# docker-compose up -d
+
+# 終了
+# docker-compose stop
