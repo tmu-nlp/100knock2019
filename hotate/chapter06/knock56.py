@@ -7,15 +7,15 @@ from knock53 import load_token, Token
 
 class Mention:
     def __init__(self,
-                 sentence_id: str = None,
-                 start: str = None,
-                 end: str = None,
+                 sentence_id: int = None,
+                 start: int = None,
+                 end: int = None,
                  mention: str = None,
                  representative: bool = False,
-                 representative_id: str = None) -> None:
+                 representative_id: int = None) -> None:
         self.sentence_id = sentence_id
-        self.start = int(start)
-        self.end = int(end)
+        self.start = start
+        self.end = end
         self.text = mention
         self.representative = representative
         self.representative_id = representative_id
@@ -33,16 +33,16 @@ def load_mention(filename: str = './nlp.txt.xml') -> Generator[Mention, None, No
             representative_id += 1
 
         yield Mention(
-            sentence_id=mention.find('sentence').text,
-            start=mention.find('start').text,
-            end=mention.find('end').text,
+            sentence_id=int(mention.find('sentence').text),
+            start=int(mention.find('start').text),
+            end=int(mention.find('end').text),
             mention=mention.find('text').text,
             representative=mention.attrib,
             representative_id=representative_id
         )
 
 
-def make_sentence_dict(filename: str = './nlp.txt.xml') -> DefaultDict[Any, list]:
+def make_sentence_dict(filename: str = './nlp.txt.xml') -> DefaultDict[int, List[Token]]:
     """
     １文毎の token の辞書を作成
     """
@@ -53,7 +53,7 @@ def make_sentence_dict(filename: str = './nlp.txt.xml') -> DefaultDict[Any, list
     return sentences
 
 
-def make_mention(filename: str = './nlp.txt.xml') -> Tuple[DefaultDict[Any, str], DefaultDict[Any, list]]:
+def make_mention(filename: str = './nlp.txt.xml') -> Tuple[DefaultDict[int, str], DefaultDict[int, List[Mention]]]:
     """
     参照表現，代表参照表現の辞書を作成
 
@@ -79,7 +79,6 @@ def make_text(tokens: List[Token]) -> str:
     """
     token のリストから単語の文字列を作成
     """
-
     return ' '.join(map(lambda token: token.word, filter(lambda t: t.display, tokens)))
 
 

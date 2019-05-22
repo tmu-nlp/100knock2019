@@ -1,11 +1,11 @@
 import xml.etree.ElementTree as ET
-from typing import Generator, Pattern
+from typing import Generator, Pattern, List
 
 import regex
 
 
-def search_np(parse_list: list,
-              np_list: list,
+def search_np(parse_list: List[str],
+              np_list: List[str],
               pattern: Pattern) -> None:
     """
     再帰的にS式を読み取り， NP が含まれるものを抽出する．

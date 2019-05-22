@@ -6,7 +6,14 @@ from typing import Generator
 
 
 class Token:
-    def __init__(self, sentence_id=None, token_id=None, word=None, lemma=None, pos=None, ner=None, display=True):
+    def __init__(self,
+                 sentence_id: int = None,
+                 token_id: int = None,
+                 word: str = None,
+                 lemma: str = None,
+                 pos: str = None,
+                 ner: str = None,
+                 display: bool = True):
         self.sentence_id = sentence_id
         self.token_id = token_id
         self.word = word
@@ -26,8 +33,8 @@ def load_token(filename: str = './nlp.txt.xml') -> Generator[Token, None, None]:
     tree = ET.parse(filename)
     for sentence in tree.findall('.//sentences/sentence'):
         for token in sentence.iter('token'):
-            yield Token(sentence_id=sentence.attrib['id'],
-                        token_id=token.attrib['id'],
+            yield Token(sentence_id=int(sentence.attrib['id']),
+                        token_id=int(token.attrib['id']),
                         word=token.find('word').text,
                         lemma=token.find('lemma').text,
                         pos=token.find('POS').text,
