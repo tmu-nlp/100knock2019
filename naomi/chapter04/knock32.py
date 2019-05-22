@@ -5,12 +5,12 @@ from knock30 import importmecab
 
 
 def baseverb(sentences: list) -> list:
-    surfaces = []
+    base = []
     for morphs in sentences:
         for m in morphs:
             if m['pos'] == u'動詞':
-                surfaces.append(m['base'])
-    return surfaces
+                base.append(m['base'])
+    return base
 
 
 def main():

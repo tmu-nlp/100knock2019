@@ -3,22 +3,22 @@ from knock30 import importmecab
 # 35. 名詞の連接
 # 名詞の連接（連続して出現する名詞）を最長一致で抽出せよ．
 
+# 連接だけだよ
+
 
 def ext_rensetu(sentences: list) -> list:
     rensetu = []
     for morphs in sentences:
         # 新しい文をみるときにmeisiをリセット
-        meisi = ''
+        nouns = []
         for m in morphs:
             if m['pos'] == u'名詞':
                 # 名詞であればとにかくつなげる
-                meisi += m['surface']
+                nouns.append(m['surface'])
             else:
-                if meisi != '':
-                    # rensetu listにmeisiを格納
-                    rensetu.append(meisi)
-                    # meisiを一度リセット
-                meisi = ''
+                if len(nouns) > 1:
+                    rensetu.append(''.join(nouns))
+                nouns = []
     return rensetu
 
 
