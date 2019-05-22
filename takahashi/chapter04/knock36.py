@@ -3,15 +3,18 @@
 
 from knock30 import load_morpheme_list
 from collections import defaultdict
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Iterable
+from operator import itemgetter
 
 M = List[Dict[str, str]]
 
-def get_word_frequency(morphemes: M) -> Dict[str, int]:
-    frequency = defaultdict(int) # type: Dict[str, int]
+
+def get_word_frequency(morphemes: M) -> Iterable[Tuple[str, int]]:
+    frequency = defaultdict(int)  # type: Dict[str, int]
     for m in morphemes:
         frequency[m["surface"]] += 1
-    return frequency
+    return sorted(frequency.items(), key=itemgetter(1), reverse=True)
+
 
 if __name__ == "__main__":
     print(get_word_frequency(load_morpheme_list()))

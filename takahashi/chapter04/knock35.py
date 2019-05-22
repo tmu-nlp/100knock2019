@@ -7,8 +7,9 @@ from typing import List, Dict
 M = List[Dict[str, str]]
 T = List[M]
 
+
 def get_consecutive_nouns(morphemes: T) -> List[str]:
-    consecutive_nouns = [] # type: List[str]
+    consecutive_nouns = []  # type: List[str]
     for sentence in morphemes:
         nouns = []
         for morpheme in sentence:
@@ -19,6 +20,7 @@ def get_consecutive_nouns(morphemes: T) -> List[str]:
                     consecutive_nouns.append("".join(nouns))
                 nouns = []
     return consecutive_nouns
+
 
 if __name__ == "__main__":
     for noun in get_consecutive_nouns(load_morpheme()):

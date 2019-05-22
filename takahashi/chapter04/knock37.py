@@ -4,13 +4,16 @@
 from knock30 import load_morpheme_list
 from knock36 import get_word_frequency
 
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Iterable
 from matplotlib import pyplot as plt
 from matplotlib.font_manager import FontProperties
 from os.path import expanduser
 
 # 日本語フォントの読み込み
-fp = FontProperties(fname = "/".join([expanduser("~"), "Library", "Fonts", "NotoSansCJKjp-DemiLight.otf"]))
+fp = FontProperties(
+    fname="/".join([expanduser("~"), "Library", "Fonts", "NotoSansCJKjp-DemiLight.otf"])
+)
+
 
 def plot_word_frequency(freq: List[Tuple[str, int]], num: int) -> None:
     labels = [s[0] for s in freq[:num]]
@@ -24,7 +27,7 @@ def plot_word_frequency(freq: List[Tuple[str, int]], num: int) -> None:
     plt.ylabel("出現頻度", fontproperties=fp)
     plt.show()
 
+
 if __name__ == "__main__":
-    frequency = get_word_frequency(load_morpheme_list())
-    sorted_freq = sorted(frequency.items(), key=lambda x: x[1], reverse=True)
-    plot_word_frequency(sorted_freq, 10)
+    result = get_word_frequency(load_morpheme_list())
+    plot_word_frequency(result, 10)
