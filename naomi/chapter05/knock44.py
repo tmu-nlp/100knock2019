@@ -3,18 +3,21 @@ import pydot
 
 
 def showkakari(chunks: list):
+    
     edges = []
     for i, chunk in enumerate(chunks):
+        # 係り先がない場合は無視
         if chunk.dst == -1:
             continue
         edges.append([(i, chunk.text),
-                     (chunks[chunk.dst], chunks[chunk.dst].text)])
+                     (chunk.dst, chunks[chunk.dst].text)])
 
-    graph = convert2dot(edges)
-    graph.write_png('result.png')
+    print(edges)
+    mygraph = makegraph(edges)
+    mygraph.write_png('result.png')
 
 
-def convert2dot(edges: list) -> pydot.Dot:
+def makegraph(edges: list) -> pydot.Dot:
     # edges = [((識別子１, ラベル１),(識別子２、ラベル２)), ...]
 
     # 有向グラフとして作成
