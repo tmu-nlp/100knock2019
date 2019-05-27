@@ -3,7 +3,7 @@ import pydot
 
 
 def showkakari(chunks: list):
-    
+
     edges = []
     for i, chunk in enumerate(chunks):
         # 係り先がない場合は無視
@@ -14,7 +14,7 @@ def showkakari(chunks: list):
 
     print(edges)
     mygraph = makegraph(edges)
-    mygraph.write_png('result.png')
+    mygraph.write(path='./result.png', format='png')
 
 
 def makegraph(edges: list) -> pydot.Dot:
@@ -29,6 +29,7 @@ def makegraph(edges: list) -> pydot.Dot:
         node1 = str(edge[0][0])
         label1 = str(edge[0][1])
 
+        # ノード２
         node2 = str(edge[1][0])
         label2 = str(edge[1][1])
 
@@ -36,7 +37,7 @@ def makegraph(edges: list) -> pydot.Dot:
         mydot.add_node(pydot.Node(node1, label=label1))
         mydot.add_node(pydot.Node(node2, label=label2))
 
-        # エッジを追加
+        # エッジ（ノード１→ノード２）を追加
         mydot.add_edge(pydot.Edge(node1, node2))
 
     return mydot
