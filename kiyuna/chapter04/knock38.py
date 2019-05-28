@@ -15,8 +15,9 @@ if __name__ == '__main__':
         cnter += Counter(d['surface'] for d in sentence)
 
     _, data = zip(*cnter.most_common(num))
-    plt.hist(data, bins=range(45))
+    plt.hist(data, bins=range(45 + 1))
     plt.title("ヒストグラム")
     plt.xlabel("出現頻度")
     plt.ylabel("単語の種類数")
+    plt.xlim([1, 45])
     plt.savefig('out38.png')

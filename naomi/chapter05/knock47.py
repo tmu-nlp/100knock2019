@@ -1,38 +1,49 @@
 from knock41 import importchunklists
 
 
-def extractkaku(clist: list):
+def extractkinou(clist: list):
 
-    with open('kakuframe.txt', 'w+', encoding='utf-8') as f:
+    with open('kinoudousi.txt', 'w+', encoding='utf-8') as f:
 
         # 1文ずつ
         for chunks in clist:
             # １文節ずつ
             for chunk in chunks:
-                # この文節にかかる項のchunkオブジェクトをリスト
-                kou_chunk = [chunks[i] for i in chunk.srcs
-                             if (chunk.hasverb() is True)   # この文節が動詞を持つとき
-                             and (chunks[i].pp != '')]      # この文節にかかる項が助詞を持つとき
+                # chunk.print()
+                # 動詞にかかる「サ変接続名詞＋を」のChunkオブジェクトをリスト
+                sahen_chunks = [chunks[i] for i in chunk.srcs
+                                # この文節自身が動詞を持つとき
+                                if (chunk.hasverb() is True)
+                                # この文節にかかる文節が「名詞（サ変）＋を」のとき
+                                and (chunks[i].hassahen() is True)]
 
-                # 項のchunkオブジェクトを、助詞の辞書順に並び替え
-                sorted_kou = sorted(kou_chunk, key=lambda x: x.pp)
+                for sahen_chunk in sahen_chunks:
+                    # 述語にかかる項の取り出し
+                    kou_chunks = [chunks[i] for i
+                                  in chunks[sahen_chunk.dst].srcs
+                                  if (chunks[i] is not sahen_chunk)]
 
-                # 項に含まれる助詞のリスト
-                pp = [chunk.pp for chunk in sorted_kou]
+                    # 項のchunkオブジェクトを、助詞の辞書順に並び替え
+                    sorted_kou = sorted(kou_chunks, key=lambda x: x.pp)
 
-                # 項のリスト
-                kou = [chunk.text for chunk in sorted_kou]
+                    # 項に含まれる助詞のリスト
+                    pp = [chunk.pp for chunk in sorted_kou]
 
-                # 動詞にかかる助詞が存在するならばファイルに動詞、助詞を書き込み
-                if pp != []:
-                    print('\t'.join([chunk.predicate(),
-                          ' '.join(pp), ' '.join(kou)]), file=f)
+                    # 項のリスト
+                    kou = [chunk.text for chunk in sorted_kou]
+
+                    print('\t'.join(
+                          [sahen_chunk.text +
+                           chunks[sahen_chunk.dst].predicate(),
+                           ' '.join(pp),
+                           ' '.join(kou)]),
+                          file=f)
 
 
 def main():
     path = 'neko.txt.cabocha'
     clist = importchunklists(path)
-    extractkaku(clist)
+    extractkinou(clist)
 
 
 if __name__ == '__main__':

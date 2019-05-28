@@ -53,7 +53,15 @@ class Chunk:
                 flag = True
         return flag
 
-    # 述語（一番左の動詞）を返す
+    def hassahen(self) -> bool:
+        # set False for default
+        flag = False
+        for i in range(len(self.morphs)-1):
+            if self.morphs[i].pos1 == 'サ変接続' and self.morphs[i+1].base == 'を':
+                flag = True
+        return flag
+
+    # 述語（一番左の動詞）の基本形を返す
     def predicate(self) -> str:
         verbs = [morph.base for morph in self.morphs if morph.pos == '動詞']
         if verbs != []:
@@ -66,6 +74,14 @@ class Chunk:
         josi = [morph.base for morph in self.morphs if morph.pos == '助詞']
         if josi != []:
             return josi[-1]
+        else:
+            return ''
+
+    # 一番左の名詞を返す
+    def returnnoun(self):
+        nouns = [morph.base for morph in self.morphs if morph.pos == '名詞']
+        if nouns != []:
+            return nouns[0]
         else:
             return ''
 

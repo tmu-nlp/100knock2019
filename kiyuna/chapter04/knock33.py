@@ -14,7 +14,15 @@ if __name__ == '__main__':
     tgt = 'サ変接続'
     res = []
     for sentence in mecab_into_sentences():
+        # メモリには優しくないが，ネストは深くならない
         res.extend([d['surface'] for d in sentence if d['pos1'] == tgt])
     message(f'{tgt}の名詞の数: {len(res)}')
     message(f'{tgt}の名詞の種類: {len(set(res))}')
     print('上から10個 ->', *res[:10])
+
+
+''' NOTE
+* 「見当する」
+- 見当をつける
+- 検討する
+'''

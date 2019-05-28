@@ -73,4 +73,10 @@ cf. open 関数
 
 * イギリス（wiki）
 -> https://ja.wikipedia.org/wiki/イギリス
+
+* MEMO
+from io import StringIO
+with gzip.open(fname, "rt") as f:
+    for line in f:
+        json_data = json.load(StringIO(line))
 '''

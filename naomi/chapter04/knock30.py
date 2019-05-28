@@ -4,6 +4,8 @@
 # 表層形（surface），基本形（base），品詞（pos），品詞細分類1（pos1）をキーとするマッピング型に格納し，
 # 1文を形態素（マッピング型）のリストとして表現せよ．第4章の残りの問題では，ここで作ったプログラムを活用せよ．
 
+# １文ずつ読み込む形にしたほうがわかりよい
+
 
 def importmecab(path: str) -> list:
     with open(path, 'r', encoding='utf-8') as f:
