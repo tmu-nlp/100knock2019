@@ -4,15 +4,13 @@
     ただし，句読点などの記号は出力しないようにせよ．
 '''
 
-from knock40 import Morph
-from knock41 import Chunk
-from knock41 import cabocha_Chunk_read
+from knock41 import load_cabocha_iter
 
 
 def main():
     out_path = 'Dependency.txt'
     with open(out_path, "w") as f:
-        for chunks in cabocha_Chunk_read():
+        for chunks in load_cabocha_iter():
             for chunk in chunks:
                 if chunk.dst == -1:
                     continue

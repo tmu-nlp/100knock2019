@@ -4,9 +4,7 @@
     Graphvizを用いるとよい．また，Pythonから有向グラフを直接的に可視化するには，pydotを使うとよい．
 '''
 
-from knock40 import Morph
-from knock41 import Chunk
-from knock41 import cabocha_Chunk_read
+from knock41 import load_cabocha_iter
 import pydot
 
 
@@ -29,10 +27,12 @@ def gen_graph(edges):
 
 
 def main():
-    for i, chunks in enumerate(cabocha_Chunk_read()):
-        if i < 7:
+    import sys
+    n = int(sys.argv[1])
+    for i, chunks in enumerate(load_cabocha_iter()):
+        if i < n:
             continue
-        if i > 7:
+        if i > n:
             break
         edges = []
         for j, chunk in enumerate(chunks):
