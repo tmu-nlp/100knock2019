@@ -77,6 +77,14 @@ class Chunk:
         else:
             return ''
 
+    # 一番左の名詞を返す
+    def returnnoun(self):
+        nouns = [morph.base for morph in self.morphs if morph.pos == '名詞']
+        if nouns != []:
+            return nouns[0]
+        else:
+            return ''
+
 
 def importchunklists(path: str) -> list:
 
