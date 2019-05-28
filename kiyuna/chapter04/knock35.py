@@ -23,7 +23,7 @@ if __name__ == '__main__':
                 if len(nouns) > 1:      # 名詞の連結
                     res.append((len(nouns), ''.join(nouns)))
                 nouns = []
-        if len(nouns) > 1:
+        if len(nouns) > 1:              # 番兵を使って解決できる
             res.append((len(nouns), ''.join(nouns)))
     message(f'{tgt}の数: {len(res)}')
     message(f'{tgt}の種類: {len(set(res))}')

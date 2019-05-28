@@ -9,7 +9,7 @@ import knock12      # col1.txt, col2.txt を作成するため
 #   -> https://devlights.hatenablog.com/entry/2018/02/23/124719
 
 
-def marge_cols(sep, *fnames):
+def merge_cols(sep, *fnames):
     for cols in zip(*map(open, fnames)):
         yield sep.join(map(lambda col: col.rstrip(), cols))
 
