@@ -1,5 +1,5 @@
 from knock30 import get_morph
-result = get_morph("./chapter04/neko.txt.mecab")
+result = get_morph("./neko.txt.mecab")
 for sentence in result:
     for morph in sentence:
         if sentence.index(morph) < len(sentence)-2 :
