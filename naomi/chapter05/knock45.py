@@ -1,7 +1,7 @@
 from knock41 import importchunklists
 
 
-def extractkaku(clist: list):
+def extract_kaku(clist: list):
 
     with open('kaku.txt', 'w+', encoding='utf-8') as f:
 
@@ -24,7 +24,10 @@ def extractkaku(clist: list):
 def main():
     path = 'neko.txt.cabocha'
     clist = importchunklists(path)
-    extractkaku(clist)
+    extract_kaku(clist)
+
+# grep "^与える" kaku.txt | sort | uniq -c | sort -n -r > 与える
+# grep "^する" kaku.txt | sort | uniq -c | sort -n -r > する
 
 
 if __name__ == '__main__':
