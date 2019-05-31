@@ -6,9 +6,7 @@ def segment_words(fin: str, fout: str):
         for line in i_f:
             # 空行は無視
             if line != '\n':
-
-                words = line.rstrip().split(' ')
-
+                words = line.split(' ')
                 for word in words:
                     print(word, file=o_f)
 
