@@ -69,7 +69,7 @@ def import_sentences(path: str) -> list:
 
 def main():
     inpath = 'nlp.txt.xml'
-    outpath = '53.txt'
+    outpath = '54.txt'
     sentences = import_sentences(inpath)
 
     with open(outpath, 'w+', encoding='utf-8') as fout:
