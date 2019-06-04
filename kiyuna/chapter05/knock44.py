@@ -25,7 +25,7 @@ class Chunk_normalized(Chunk):
         return False
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     def input_k():
         return int(input('Enter a number (0: exit) -> '))
 
@@ -33,7 +33,7 @@ if __name__ == "__main__":
         for chunks in islice(cabocha_into_chunks(), k - 1, k):
             chunks = tuple(map(Chunk_normalized, chunks.values()))
             G = pydot.Dot(graph_type='digraph')
-            for i, c in enumerate(chunks):
+            for i, c in enumerate(chunks):  # 同じ単語の可能性もあるので，id で区別
                 if c.norm:
                     color = 'red' if c.has_pos('名詞') else 'black'
                     G.add_node(pydot.Node(i, label=c.norm, color=color))

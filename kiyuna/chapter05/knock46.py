@@ -44,7 +44,7 @@ class Chunk_normalized(Chunk):
         return res
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     res = []
     for chunks in cabocha_into_chunks():
         chunks = tuple(map(Chunk_normalized, chunks.values()))

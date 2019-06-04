@@ -1,6 +1,4 @@
 '''
-https://qiita.com/segavvy/items/dfbf9d5dd5885e807d49
-
 49. 名詞間の係り受けパスの抽出
 文中のすべての名詞句のペアを結ぶ最短係り受けパスを抽出せよ．
 ただし，名詞句ペアの文節番号がiとj（i<j）のとき，係り受けパスは以下の仕様を満たすものとする．
@@ -62,13 +60,10 @@ class Chunk_normalized(Chunk):
         return res
 
     def has_sahen_wo(self):
-        cond1 = cond2 = False
-        for m in self.morphs:
-            if m.pos1 == 'サ変接続':
-                cond1 = True
-            if m.pos == '助詞' and m.base == 'を':
-                cond2 = True
-        return cond1 and cond2
+        for m1, m2 in zip(self.morphs, self.morphs[1:]):
+            if [m1.pos1, m2.pos, m2.base] == ['サ変接続', '助詞', 'を']:
+                return True
+        return False
 
     def replace_noun(self, repl):
         # 文節iとjに含まれる名詞句はそれぞれ，XとYに置換する
@@ -133,7 +128,7 @@ def replace_and_combine(part1, part2, tail, chunks):
     return ' | '.join(res)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 
     res = []
 
@@ -141,6 +136,8 @@ if __name__ == "__main__":
         paths = []
         noun_idx = []
         chunks = tuple(map(Chunk_normalized, chunks.values()))
+
+        # 名詞列のパス（idx の列）を作る
         for idx, dc in enumerate(chunks):
             if not dc.has_pos('名詞'):
                 continue
@@ -155,8 +152,9 @@ if __name__ == "__main__":
                 dst = chunks[dst].dst
             paths.append(tmp)
 
+        # i < j なる 2 つのパスを列挙
         for p1, p2 in combinations(paths, 2):
-            p2_head = p2[0]
+            p2_head = p2[0]     # 文節 j
             if p2_head in p1:
                 '''
                 文節iから構文木の根に至る経路上に文節jが存在する場合:

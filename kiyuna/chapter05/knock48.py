@@ -46,16 +46,13 @@ class Chunk_normalized(Chunk):
         return res
 
     def has_sahen_wo(self):
-        cond1 = cond2 = False
-        for m in self.morphs:
-            if m.pos1 == 'サ変接続':
-                cond1 = True
-            if m.pos == '助詞' and m.base == 'を':
-                cond2 = True
-        return cond1 and cond2
+        for m1, m2 in zip(self.morphs, self.morphs[1:]):
+            if [m1.pos1, m2.pos, m2.base] == ['サ変接続', '助詞', 'を']:
+                return True
+        return False
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     res = []
     for chunks in cabocha_into_chunks():
         chunks = tuple(map(Chunk_normalized, chunks.values()))
@@ -63,7 +60,7 @@ if __name__ == "__main__":
             if not dc.has_pos('名詞'):
                 continue
             if dc.dst == -1:
-                res.append(dc.norm + '\n')
+                res.append(dc.norm + '\n')  # 長さ 1 のパス
                 continue
             tmp = [dc.norm]
             dst = dc.dst
