@@ -36,8 +36,8 @@ def cabocha_into_morphs(f_name='neko.txt.cabocha'):
                 )
 
 
-if __name__ == "__main__":
-    for morphs in islice(cabocha_into_morphs(), 3, 4):
+if __name__ == '__main__':
+    for morphs in islice(cabocha_into_morphs(), 2, 3):
         pprint.pprint(morphs)
 
 

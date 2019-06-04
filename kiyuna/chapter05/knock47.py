@@ -50,16 +50,13 @@ class Chunk_normalized(Chunk):
         return res
 
     def has_sahen_wo(self):
-        cond1 = cond2 = False
-        for m in self.morphs:
-            if m.pos1 == 'サ変接続':
-                cond1 = True
-            if m.pos == '助詞' and m.base == 'を':
-                cond2 = True
-        return cond1 and cond2
+        for m1, m2 in zip(self.morphs, self.morphs[1:]):
+            if [m1.pos1, m2.pos, m2.base] == ['サ変接続', '助詞', 'を']:
+                return True
+        return False
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     res = []
     for chunks in cabocha_into_chunks():
         chunks = tuple(map(Chunk_normalized, chunks.values()))
@@ -83,18 +80,20 @@ if __name__ == "__main__":
                         # 文節内に助詞が複数ある場合は最も右のものを選ぶ
                         srcs.append((ms[-1].base, chunks[sc_idx].norm))
 
-            if failed:
+            if failed:      # 「サ変接続名詞+を+動詞」がなかった
                 continue
 
-            if srcs:
-                # 述語に係る助詞（文節）が複数あるときは，
-                # すべての助詞をスペース区切りで辞書順に並べる
-                srcs.sort()
-                pb, pc = zip(*srcs)
-                p_base = " ".join(pb)
-                # 項は述語に係っている文節の単語列とする（末尾の助詞を取り除く必要はない）
-                # 述語に係る文節が複数あるときは，助詞と同一の基準・順序でスペース区切りで並べる
-                clause = " ".join(pc)
-                res.append(f'{v_base}\t{p_base}\t{clause}\n')
+            if not srcs:    # 助詞がなかった
+                continue
+
+            # 述語に係る助詞（文節）が複数あるときは，
+            # すべての助詞をスペース区切りで辞書順に並べる
+            srcs.sort()
+            pb, pc = zip(*srcs)
+            p_base = " ".join(pb)
+            # 項は述語に係っている文節の単語列とする（末尾の助詞を取り除く必要はない）
+            # 述語に係る文節が複数あるときは，助詞と同一の基準・順序でスペース区切りで並べる
+            clause = " ".join(pc)
+            res.append(f'{v_base}\t{p_base}\t{clause}\n')
     sys.stdout.writelines(res)
     message(f'{len(res)} 行書き出しました')

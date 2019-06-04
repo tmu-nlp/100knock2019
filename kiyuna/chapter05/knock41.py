@@ -37,16 +37,16 @@ def cabocha_into_chunks(f_name: str='neko.txt.cabocha') -> Dict[int, Chunk]:
     chunks = defaultdict(Chunk)
     with open(f_name) as f:
         for line in map(lambda x: x.rstrip(), f):
-            if line == "EOS":
+            if line == "EOS":           # 文の終わり
                 yield {k: v for k, v in sorted(chunks.items()) if k >= 0}
                 chunks.clear()
-            elif line[0] == '*':
+            elif line[0] == '*':        # 係り受けの情報
                 _, idx, dst, *_ = line.split()
                 idx = int(idx)
                 dst = int(dst[:-1])
                 chunks[idx].dst = dst
                 chunks[dst].srcs.append(idx)
-            else:
+            else:                       # 形態素の情報
                 surface, details = line.split('\t')
                 mecab_keys = ["品詞", "品詞細分類1", "品詞細分類2", "品詞細分類3",
                               "活用型", "活用形", "原形", "読み", "発音"]
@@ -62,7 +62,7 @@ def cabocha_into_chunks(f_name: str='neko.txt.cabocha') -> Dict[int, Chunk]:
     raise StopIteration
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     for chunks in islice(cabocha_into_chunks(), 7, 8):
         pprint.pprint(chunks)
 

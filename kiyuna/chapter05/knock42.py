@@ -21,13 +21,13 @@ class Chunk_normalized(Chunk):
         return clause
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     res = []
     for chunks in cabocha_into_chunks():
         chunks = tuple(map(Chunk_normalized, chunks.values()))
         for c in chunks:
-            if c.dst == -1:
-                continue
+            if c.dst == -1:     # （注）python だとインデックスの -1 は
+                continue        # エラーにならず，リストの最後が選ばれてしまう
             if c.norm and chunks[c.dst].norm:
                 res.append(f'{c.norm}\t{chunks[c.dst].norm}\n')
     sys.stdout.writelines(res)
