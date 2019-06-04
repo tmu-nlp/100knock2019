@@ -23,6 +23,7 @@ class Token:
         self.display = display
 
     def is_person(self) -> bool:
+        # 固有表現認識 (Named Entitie. Recognition; NER)
         return self.ner == 'PERSON'
 
 

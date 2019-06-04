@@ -6,13 +6,18 @@ def extract_sentence(filename: str = './nlp.txt') -> Generator[str, None, None]:
     """
     1文ごとに分割する
     """
-    # parser = re.compile(r'[A-Z].+?[\.\;\:\!\?](?=(?:\s[A-Z])|$)')
-    spliter = re.compile(r'(?<=[\.\;\:\!\?])\s(?=[A-Z])')
+    # (?<=[\.\;\:\!\?])\s(?=[A-Z])
+    spliter = re.compile(
+        r"""
+        (?<=[\.\;\:\!\?]) # . ; : ! ? のどれかで終わる場所にマッチ
+        \s
+        (?=[A-Z]) # 大文字にマッチ
+        """
+    )
     for line in open(filename, 'r'):
         line = line.strip('\n')
         if not line:
             continue
-        # sentences = parser.findall(line)
         sentences = re.split(spliter, line)
         for sentence in sentences:
             yield sentence

@@ -14,8 +14,8 @@ def load_coll_dep(filename: str = './nlp.txt.xml') -> DefaultDict[Any, list]:
     for sentence in tree.findall('.//sentences/sentence'):
         for dep in sentence.findall('./*[@type="collapsed-dependencies"]/dep'):
             no = f'[{sentence.attrib["id"]}]'
-            governor = no + ' ' + dep.find('governor').text
-            dependent = no + ' ' + dep.find('dependent').text
+            governor = no + ' ' + dep.find('governor').text  # 係り元
+            dependent = no + ' ' + dep.find('dependent').text  # 係り先
             sentences[no].append([governor, dependent])
 
     return sentences
@@ -34,4 +34,4 @@ def main(stop):
 
 
 if __name__ == '__main__':
-    main()
+    main(3)

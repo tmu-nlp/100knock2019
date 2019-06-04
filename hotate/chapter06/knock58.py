@@ -8,8 +8,8 @@ def extract_svo(filename: str = './nlp.txt.xml') -> Generator[Tuple[str, str, st
     tree = ET.parse(filename)
 
     for sentence in tree.findall('.//sentences/sentence'):
-        nsubj = defaultdict(str)
-        dobj = defaultdict(str)
+        nsubj = defaultdict(str)  # 主語と述語の修飾関係
+        dobj = defaultdict(str)  # 述語と直接目的語の修飾関係
 
         for dep in sentence.findall('./*[@type="collapsed-dependencies"]/dep'):
             governor = dep.find('governor').text

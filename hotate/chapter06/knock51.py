@@ -11,12 +11,13 @@ def extract_word(filename: str = './nlp.txt') -> Generator[str, None, None]:
     for sentence in extract_sentence(filename):
         for word in sentence.split(' '):
             yield word
+        yield ''
 
 
 def main(stop):
-    for word in itertools.islice(extract_word(), stop):
+    for word in itertools.islice(extract_word(), stop):  # 指定行数のみイテレーション
         print(word)
 
 
 if __name__ == '__main__':
-    main(10)
+    main(50)
