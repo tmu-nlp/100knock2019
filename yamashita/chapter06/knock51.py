@@ -1,4 +1,3 @@
-import sys
 import re
 
 with open('result_50.txt', 'r', encoding='utf-8') as i_file:
