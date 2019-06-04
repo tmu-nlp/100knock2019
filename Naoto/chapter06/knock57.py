@@ -8,7 +8,7 @@ import pydot
 import xml.etree.ElementTree as ET
 
 
-def coll(input_, output_):
+def coll(input_):
     count = 0
     count2 = 0
     color = 'green'
@@ -35,5 +35,4 @@ def coll(input_, output_):
 
 if __name__ == "__main__":
     input_ = "nlp.txt.xml"
-    output_ = "coll.txt"
     coll(input_, output_)
