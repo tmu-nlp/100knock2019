@@ -1,7 +1,7 @@
 from knock41 import importchunklists
 
 
-def extractkinou(clist: list):
+def extract_kinou(clist: list):
 
     with open('kinoudousi.txt', 'w+', encoding='utf-8') as f:
 
@@ -9,7 +9,7 @@ def extractkinou(clist: list):
         for chunks in clist:
             # １文節ずつ
             for chunk in chunks:
-                # chunk.print()
+
                 # 動詞にかかる「サ変接続名詞＋を」のChunkオブジェクトをリスト
                 sahen_chunks = [chunks[i] for i in chunk.srcs
                                 # この文節自身が動詞を持つとき
@@ -32,6 +32,10 @@ def extractkinou(clist: list):
                     # 項のリスト
                     kou = [chunk.text for chunk in sorted_kou]
 
+                    if pp == [''] or pp == []:
+                        continue
+                    if kou == []:
+                        continue
                     print('\t'.join(
                           [sahen_chunk.text +
                            chunks[sahen_chunk.dst].predicate(),
@@ -43,7 +47,7 @@ def extractkinou(clist: list):
 def main():
     path = 'neko.txt.cabocha'
     clist = importchunklists(path)
-    extractkinou(clist)
+    extract_kinou(clist)
 
 
 if __name__ == '__main__':

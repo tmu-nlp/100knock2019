@@ -4,7 +4,7 @@ from itertools import combinations
 
 def kakariukepath(clist: list):
 
-    with open('koubunki.txt', 'w+', encoding='utf-8') as f:
+    with open('kakariuke.txt', 'w+', encoding='utf-8') as f:
 
         # 1文ずつ
         for chunks in clist:

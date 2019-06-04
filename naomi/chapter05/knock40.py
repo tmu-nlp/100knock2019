@@ -38,12 +38,12 @@ def importmorphlists(path: str) -> list:
     for sentences in root:
         # 各文について、morphオブジェクトを格納するリスト [morph1, morph2, ...]
         morphs = []
-        
+
         for tok in sentences.iter('tok'):
 
             # featureを取り出す
             feature = tok.attrib['feature'].split(',')
-            
+
             base = feature[6]
             pos = feature[0]
             pos1 = feature[1]
@@ -51,7 +51,7 @@ def importmorphlists(path: str) -> list:
 
             # Morphオブジェクトを作ってリストに追加
             morphs.append(Morph(surface, base, pos, pos1))
-        
+
         if morphs != []:
             mlists.append(morphs)
 

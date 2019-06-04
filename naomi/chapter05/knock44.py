@@ -13,11 +13,11 @@ def showkakari(chunks: list):
                      (chunk.dst, chunks[chunk.dst].text)])
 
     print(edges)
-    mygraph = makegraph(edges)
+    mygraph = make_graph(edges)
     mygraph.write(path='./result.png', format='png')
 
 
-def makegraph(edges: list) -> pydot.Dot:
+def make_graph(edges: list) -> pydot.Dot:
     # edges = [((識別子１, ラベル１),(識別子２、ラベル２)), ...]
 
     # 有向グラフとして作成

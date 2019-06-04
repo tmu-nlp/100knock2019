@@ -133,7 +133,8 @@ def importchunklists(path: str) -> list:
                 linkedby = [i for i, dst in enumerate(dsts) if dst == id]
                 chunks.append(Chunk(morphs, dst, linkedby))
 
-        chunkslist.append(chunks)
+        if chunks != []:
+            chunkslist.append(chunks)
 
     return chunkslist
 

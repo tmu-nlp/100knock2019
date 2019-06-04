@@ -1,7 +1,7 @@
 from knock41 import importchunklists
 
 
-def extractkakari(clist: list):
+def extract_kakari(clist: list):
 
     with open('kakari.txt', 'w+', encoding='utf-8') as f:
         for chunks in clist:
@@ -15,7 +15,7 @@ def extractkakari(clist: list):
 def main():
     path = 'neko.txt.cabocha'
     clist = importchunklists(path)
-    extractkakari(clist)
+    extract_kakari(clist)
 
 
 if __name__ == '__main__':
