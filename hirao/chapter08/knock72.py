@@ -4,6 +4,7 @@ import snowballstemmer
 import joblib
 # sklearn.external.joblibが非推奨に？
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+import numpy as np
 
 class FeatureEnginnering:
     def __init__(self):
