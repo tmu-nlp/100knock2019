@@ -93,12 +93,13 @@ def import_corefs(path: str) -> dict:
 
                     if mention.attrib != '':
                         reptext = mention[4].text
-                    else:
-                        sid = int(mention.findtext('sentence'))
-                        start = int(mention.findtext('start'))
-                        end = int(mention.findtext('end'))
-                        # 辞書に登録
-                        corefs[sid, start] = [reptext, end]
+
+
+                    sid = int(mention[0].text)
+                    start = int(mention[1].text)
+                    end = int(mention[2].text)
+                    # 辞書に登録
+                    corefs[sid, start] = [reptext, end]
     return corefs
 
 
@@ -116,11 +117,10 @@ def main():
                 tokens = []
                 if (sentence.id, token.id) in corefs:
                     end, reptext = corefs[sentence.id, token.id]
-
                 for i in range(token.id, int(end)+1):
                     if sentence.get_token(i):
                         tokens.append(sentence.get_token(i).word)
-                print(' '.join(tokens), end='')
+                print(' '.join(tokens))
 
 
 if __name__ == '__main__':
