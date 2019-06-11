@@ -17,6 +17,6 @@ def Japan_artists_num(db_path) -> int:
 
 
 if __name__ == "__main__":
-    db_path = "lvdb"
+    db_path = "KVS_area"
     num = Japan_artists_num(db_path)
     print(num)

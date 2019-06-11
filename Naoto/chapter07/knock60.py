@@ -11,8 +11,7 @@ import json
 
 def built_KVS(path):
     with open(path, "r") as f:
-        count = 0
-        db = leveldb.LevelDB('./lvdb')
+        db = leveldb.LevelDB('KVS_area')
         for line in f:
             jsonData = json.loads(line)
             if "name" in jsonData and "area" in jsonData:

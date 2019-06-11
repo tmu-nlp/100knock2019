@@ -8,15 +8,10 @@ KVSを用い，アーティスト名（name）からタグと被タグ数（タ�
 import leveldb
 import json
 import sys
-import argparse
-
-
-parser = argparse.ArgumentParser()
 
 
 def KVS_build_tags(json_path, db_path):
     db = leveldb.LevelDB(db_path)
-    count = 0
     with open(json_path) as f:
         for line in f:
             json_Data = json.loads(line)
@@ -26,7 +21,7 @@ def KVS_build_tags(json_path, db_path):
                     tag_list.append(tag["value"])
                 tag_list.insert(0, str(i+1))
                 db.Put(json_Data["name"].encode(), "^".join(tag_list).encode())
-                # listをjoinさせて文字列として格納しておくことで、後でdecodeしてからsplitで戻せる。
+                # listをjoinさせて文字列として格納しておくことで、後でdecodeしてからsplitでlist型へ戻せる。
                 # スペースでjoinすると、タグ名がスペースの場合、区切られてしまう
 
 

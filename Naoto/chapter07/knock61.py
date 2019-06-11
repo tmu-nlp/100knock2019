@@ -20,5 +20,5 @@ def Get_area(db_path, artist_name):
 
 
 if __name__ == "__main__":
-    db_path = "lvdb"
-    Get_area(db_path, " ".join(sys.argv[1:]))
+    db_path = "KVS_area"
+    Get_area(db_path, " ".join(sys.argv[1:]))  # スペース区切りの名前も受け取る
