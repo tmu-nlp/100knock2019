@@ -1,7 +1,7 @@
 from knock41 import get_chunk
 
 if __name__ == "__main__":
-    file_name = "./neko.txt.cabocha"
+    file_name = "./chapter05/neko.txt.cabocha"
     sentences = get_chunk(file_name)
     for sentence in sentences[:10]:
         for chunk in sentence:

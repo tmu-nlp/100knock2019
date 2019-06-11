@@ -58,7 +58,7 @@ def get_chunk(file_name):
     return article
 
 if __name__ == "__main__":
-    file_name = "./neko.txt.cabocha"
+    file_name = "./chapter05/neko.txt.cabocha"
     chunks = get_chunk(file_name)
     for i in chunks[7]:
         print(i)

@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 
-xml_tree = ET.parse("./nlp.txt.xml")
+xml_tree = ET.parse("/users/hongfeiwang/nlp.txt.xml")
 #XMLから文を読み込み、リストで保存
 sentences = []
 for sentence in xml_tree.iter("sentence"):

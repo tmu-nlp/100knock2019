@@ -1,19 +1,56 @@
-from knock30 import get_morph
-import numpy as np
-from matplotlib import pyplot as plt
-from scipy import special
-result = get_morph("/Users/hongfeiwang/100knock2019/wanghongfei/chapter04/neko.txt.mecab")
-frequency = {}
-for sentence in result:
-    for morph in sentence:
-        frequency.setdefault(morph["基本形"], 0)
-        frequency[morph["基本形"]] += 1
-frequency_sorted = sorted(frequency.items(), key=lambda x:x[1])
-
-s = np.array([ i[1] for i in frequency_sorted ])
-a = 2
-count,bins,ignored = plt.hist(s[s<10],10,density=True)
-x = np.arange(1.,10.)
-y = x**(-a)/special.zetac(a)
-plt.plot(x,y/max(y),linewidth=2)
-plt.show()
+import re
+import matplotlib.pyplot as plt
+     
+def analyze():
+        lines = []
+        sentence = []
+        with open('./chapter04/neko.txt.mecab', 'r', encoding='utf8') as fin:
+            for line in fin:
+                words = re.split(r'\t|,|\n', line)
+                if words[0] == 'EOS':
+                    if sentence:
+                        lines.append(sentence)
+                        sentence = []
+                    continue
+                sentence.append({
+                    "surface": words[0],
+                    "base": words[7],
+                    "pos": words[1],
+                    "pos1": words[2],
+                })
+        return lines
+     
+def getFrequency(lines):
+        words = {}
+        for sentense in lines:
+            for word in sentense:
+                if word['surface'] in words.keys():
+                    words[word['surface']] += 1
+                else:
+                    words[word['surface']] = 1
+        return words
+     
+def getScatterData(words):
+        data = [x[1] for x in words.items()]
+        data = sorted(data, key=lambda x: x, reverse=True)
+        return range(1, len(data)+1), data
+     
+def plotScatter(x, y):
+        plt.rcParams['font.family'] = 'Meiryo'  
+        plt.scatter(x, y, s=2)
+        plt.xscale("log")
+        plt.yscale("log")
+     
+        plt.xlabel('出現頻度順位')
+        plt.ylabel('出現頻度')
+        plt.show()
+     
+def main():
+        article = analyze()
+        words = getFrequency(article)
+        x, y = getScatterData(words)
+     
+        plotScatter(x, y)
+     
+if __name__ == '__main__':
+        main()
