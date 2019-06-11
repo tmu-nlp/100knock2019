@@ -17,8 +17,8 @@ def nlp2line(f_name='nlp.txt'):
         for line in map(lambda x: x.rstrip(), f):
             if not line:
                 continue
-            for line in reg.split(line):
-                yield line
+            for res_line in reg.split(line):
+                yield res_line
 
 
 if __name__ == "__main__":

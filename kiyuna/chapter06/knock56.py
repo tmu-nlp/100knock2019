@@ -53,6 +53,8 @@ for sentence in tree.iterfind('./document/sentences/sentence'):
                 repl_before.append(substr)
             # 出力例:
             # [My head|you](your head|your)
+            # 単語数でソートして置換していくと，入れ子もできそう
+            # class に display というメンバ変数を作る良さそう
             res_sentence.append(
                 f"[{'|'.join(repl_after)}]({'|'.join(repl_before)})"
             )
