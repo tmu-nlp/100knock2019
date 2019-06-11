@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 
-xml_tree = ET.parse("./nlp.txt.xml")
+xml_tree = ET.parse("/users/hongfeiwang/nlp.txt.xml")
 for dependency in xml_tree.iter("dependencies"):
     if dependency.get("type") == "basic-dependencies":
         nsubj_list = []
