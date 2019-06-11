@@ -32,6 +32,11 @@ for k in iter(lambda: int(input('Enter a number (0: exit) -> ')), 0):
 
 
 '''
+* XPath 式
+- https://docs.python.org/ja/3/library/xml.etree.elementtree.html#xpath-support
+    - `//`:
+        現在の要素の下にある全てのレベルの全ての子要素を選択します。
+        例えば、.//egg は木全体から egg 要素を選択します。
 * nlp.txt.xml の構造（一部）
 <root>
   <document>

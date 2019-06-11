@@ -11,4 +11,4 @@ from knock51 import nlp2word
 ps = PS()
 for word in nlp2word():
     stem = ps.stem(word)
-    print(stem)
+    print(f'{word}\t{stem}')
