@@ -20,7 +20,7 @@ def get_artistcounts(area: str) -> int:
 def main():
     area = 'Japan'
     print(get_artistcounts(area))
- 
+
 
 if __name__ == '__main__':
     main()
