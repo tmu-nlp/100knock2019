@@ -1,34 +1,10 @@
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+from typing import Generator, Tuple
 import pydot
 
-def make_graph(edges: list) -> pydot.Dot:
-    # edges = [((識別子１, ラベル１),(識別子２、ラベル２)), ...]
 
-    # 有向グラフとして作成
-    mydot = pydot.Dot(graph_type='digraph')
-
-    for edge in edges:
-
-        # ノード１
-        node1 = str(edge[0][0])
-        label1 = str(edge[0][1])
-
-        # ノード２
-        node2 = str(edge[1][0])
-        label2 = str(edge[1][1])
-
-        # ノードを追加
-        mydot.add_node(pydot.Node(node1, label=label1))
-        mydot.add_node(pydot.Node(node2, label=label2))
-
-        # エッジ（ノード１→ノード２）を追加
-        mydot.add_edge(pydot.Edge(node1, node2))
-
-    return mydot
-
-
-def make_edges(path: str) -> list:
+def ext_svo(path: str) -> Generator[Tuple[str, str, str], None, None]:
 
     tree = ET.parse(path)
     root = tree.getroot()

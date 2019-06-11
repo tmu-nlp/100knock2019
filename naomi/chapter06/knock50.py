@@ -13,7 +13,7 @@ def segmentation(fin: str, fout: str):
                 line = line.rstrip()
 
                 ptn = r'''
-                [.;:?!] # [.;:?!]のうちのどれか
+                (?<=[.;:?!]) # [.;:?!]のうちのどれか
                 \s+     # 空白
                 (?=[A-Z])   # 次の文字が大文字
                 '''

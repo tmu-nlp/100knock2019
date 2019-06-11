@@ -6,7 +6,7 @@ def segment_words(fin: str, fout: str):
          open(fout, 'w+', encoding='utf-8') as o_f:
 
         for word in i_f:
-            word = word.rstrip('\n').rstrip(',.;:?!')
+            word = word.rstrip('\n,.;:?!')
             stemed_word = stem(word)
 
             print(stemed_word, file=o_f)
