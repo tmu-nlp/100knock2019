@@ -55,7 +55,7 @@ def render():
     if size >= 10001:
         size = '10000 以上'
     result = f"{len(res)} / {size} 件表示<br><hr>"
-    result += '<br><br>'.join(res)
+    result += '<br><br>'.join(res)      # div タグで挟んで id に番号入れるの良さそう
 
     return f'''
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

@@ -32,6 +32,8 @@ if __name__ == '__main__':
 
 '''
 * MongoDB のインタラクティブシェルを用いて，"Queen" というアーティストに関する情報を取得
+    $ mongo
+
     - show dbs
     - use artist_db
     - show collections
