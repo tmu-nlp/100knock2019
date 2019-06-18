@@ -11,7 +11,7 @@ def test(sentence: str) -> (int, float):
     vocab = joblib.load('vocab')
 
     sentence = clean_sentence(sentence)
-    
+
     vectorizer = TfidfVectorizer(vocabulary=vocab)
     feature_vec = vectorizer.fit_transform([sentence]).toarray()
 
@@ -20,11 +20,17 @@ def test(sentence: str) -> (int, float):
 
     return (predict, probability)
 
+
 def main():
-    predict, probab = test("a semi-autobiographical film that's so sloppily written and cast that you cannot believe anyone more central to the creation of bugsy than the caterer had anything to do with it .")
-    predict, probab = test(". . . only bond can save us from the latest eccentric , super-wealthy megalomaniac bent on world domination and destruction . ")
+    predict, probab = test("a semi-autobiographical film that's so sloppily \
+         written and cast that you cannot believe anyone more central to the \
+         creation of bugsy than the caterer had anything to do with it .")
+    predict, probab = test(". . . only bond can save us from the latest \
+        eccentric , super-wealthy megalomaniac bent on world domination \
+            and destruction . ")
 
     print(predict, probab)
+
 
 if __name__ == '__main__':
     main()

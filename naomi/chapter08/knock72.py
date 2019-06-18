@@ -33,7 +33,6 @@ def abstract_features(inpath: str):
 
             labels.append(label)
             sentences.append(sentence)
-        
 
         vectorizer = TfidfVectorizer()
         feature = vectorizer.fit_transform(sentences).toarray()
@@ -41,8 +40,8 @@ def abstract_features(inpath: str):
 
         joblib.dump(feature, 'feature')
         joblib.dump(sentiment, 'sentiment')
-        joblib.dump(vectorizer.vocabulary_,'vocab')
-        joblib.dump(vectorizer.get_feature_names(),'name')
+        joblib.dump(vectorizer.vocabulary_, 'vocab')
+        joblib.dump(vectorizer.get_feature_names(), 'name')
 
 
 def main():
