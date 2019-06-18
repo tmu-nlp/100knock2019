@@ -4,5 +4,6 @@ stopwords = ['the', 'of', 'and', 'a', 'to', 'in',
              '!', 'at', 'by', 'but', 'not', 'him', 'from',
              'be', 'on', 'so']
 
+
 def is_stopword(word: str, stopwrods: list) -> bool:
     return (word in stopwords)
