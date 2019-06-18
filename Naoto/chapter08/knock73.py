@@ -43,6 +43,7 @@ def logistic(feature="features.txt"):
     model = LogisticRegression(solver='lbfgs').fit(features, labels)
     serialize("model", model)
     serialize("labels", labels)
+    serialize("features", features)
     serialize("vocabs", vectorizer.vocabulary_)
     serialize("names", vectorizer.get_feature_names())
 
