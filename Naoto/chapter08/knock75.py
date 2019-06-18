@@ -14,10 +14,10 @@ def feature_weights():
     weights_name.sort()
     print("highest")
     for weight, name in weights_name[-1:-10:-1]:
-        print(f"{weight:.5} {name}")
+        print(f"{weight:.6} {name}")
     print("\nlowest")
     for weight, name in weights_name[:9]:
-        print(f"{weight:.5} {name}")
+        print(f"{weight:.6} {name}")
     
 
 
