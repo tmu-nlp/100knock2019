@@ -19,6 +19,9 @@ def save_db_mongo(path: str):
     # Collectionの呼び出し（なかったら作る）
     collection = db['64mongo-collection']
 
+    # 初期化
+    collection.drop()
+
     with gzip.open(path, 'rt', encoding='utf-8') as f:
         # insert_oneでなくinsert_manyを使うためのバッチ
         artists = []
@@ -52,3 +55,4 @@ if __name__ == '__main__':
 
 # 起動：brew services start mongodb
 # 停止：brew services stop mongodb
+# 22742
