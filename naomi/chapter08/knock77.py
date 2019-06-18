@@ -1,6 +1,7 @@
 # 77. 正解率の計測
 # 76の出力を受け取り，予測の正解率，正例に関する適合率，再現率，F1スコアを求めるプログラムを作成せよ．
 
+
 def main():
     with open('lables.txt', 'r', encoding='utf-8') as fin:
 
@@ -8,7 +9,7 @@ def main():
         pos = 0
         pos_corr = 0
         counts = 0
-        
+
         for line in fin:
             (lbl, prd, prob) = line.rstrip().split()
             if lbl == prd:
@@ -23,6 +24,7 @@ def main():
 
     print(f'正解率： {accuracy}')
     print(f'正例の適合率： {precision}')
+
 
 if __name__ == '__main__':
     main()
