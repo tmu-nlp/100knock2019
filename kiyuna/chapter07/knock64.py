@@ -27,7 +27,7 @@ if sum(1 for _ in collection.find()) == 921337:
     message("[*] skip")
 else:
     message("[*] make")
-    collection.delete_many({})
+    collection.delete_many({})          # collection.drop()
     with gzip.open(fname, "rt") as f:
         collection.insert_many(map(json.loads, f))
     for key in ('name', 'aliases.name', 'tags.value', 'rating.value'):
