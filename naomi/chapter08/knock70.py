@@ -3,8 +3,8 @@
 
 
 # 1, -1をそれぞれ挿入
-# コマンド　LC_ALL=C sed -e "s/^/1 /" rt-polarity.pos > pos.txt
-# コマンド　LC_ALL=C sed -e "s/^/-1 /" rt-polarity.neg > neg.txt
+# コマンド　LC_ALL=C.UTF-8 sed -e "s/^/+1 /" rt-polarity.pos > pos.txt
+# コマンド　LC_ALL=C.UTF-8 sed -e "s/^/-1 /" rt-polarity.neg > neg.txt
 # 注：LC_ALL=Cがないと、RE error: illegal byte sequence
 # neg.txt, pos.txt 共に5331 linesと確認
 
@@ -13,7 +13,7 @@
 # sent.txt 10662 linesと確認
 
 # シャッフル
-# cat sent.txt  | LC_ALL=C sort -R > sentiment.txt
+# cat sent.txt  | LC_ALL=C.UTF-8 sort -R > sentiment.txt
 # sentiment.txt 10662 linesと確認
 
 # '1 'で始まる行を数える
