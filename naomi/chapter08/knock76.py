@@ -13,7 +13,7 @@ def main():
 
     with open('lables.txt', 'w+', encoding='utf-8') as fout:
         for lbl, prd, prob in zip(labels, predicts, probs):
-            print(''.join(lbl), prd, max(prob), sep='\t', file=fout)
+            print(lbl, prd, max(prob), sep='\t', file=fout)
 
 
 if __name__ == '__main__':

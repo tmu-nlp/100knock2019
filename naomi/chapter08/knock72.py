@@ -26,16 +26,17 @@ def abstract_features(inpath: str):
         sentences = []
         for line in fin:
 
-            label = [line[:2]]
+            label = line[:2]
             words = line[3:]
 
             sentence = clean_sentence(words)
 
-            labels.append(label)
+            labels.append(int(label))
             sentences.append(sentence)
 
         vectorizer = TfidfVectorizer()
         feature = vectorizer.fit_transform(sentences).toarray()
+
         sentiment = np.array(labels)
 
         joblib.dump(feature, 'feature')
