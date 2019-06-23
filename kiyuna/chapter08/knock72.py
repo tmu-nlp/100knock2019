@@ -4,8 +4,9 @@
 素性としては，レビューからストップワードを除去し，
 各単語をステミング処理したものが最低限のベースラインとなるであろう．
 '''
+import numpy as np
 import sys
-import pickle
+import pickle           # vs. joblib
 from nltk.stem.porter import PorterStemmer as PS
 from sklearn.feature_extraction.text import TfidfVectorizer
 from knock71 import is_stopword
@@ -35,12 +36,12 @@ def extract_features(file_path):
 
 
 def save(file_name, data):
-    with open(f"./pickles/{file_name}", 'wb') as f_out:
+    with open(f"./pickles/{file_name}.pkl", 'wb') as f_out:
         pickle.dump(data, f_out)
 
 
 def load(file_name):
-    with open(f"./pickles/{file_name}", 'rb') as f_in:
+    with open(f"./pickles/{file_name}.pkl", 'rb') as f_in:
         data = pickle.load(f_in)
     return data
 
@@ -48,12 +49,16 @@ def load(file_name):
 def vectorize_and_save(labels, docs):
     vectorizer = TfidfVectorizer()
     features = vectorizer.fit_transform(docs).toarray()
+    labels = np.array(labels, dtype='int8')
 
-    save("features", features)
-    save("labels", labels)
-    save("vocabs", vectorizer.vocabulary_)
-    save("names", vectorizer.get_feature_names())
-    message(sorted(vectorizer.vocabulary_.items(), key=lambda x: -x[1])[:30])
+    save("features", features)                      # <class 'numpy.ndarray'>
+    save("labels", labels)                          # <class 'list'>
+    save("vocabs", vectorizer.vocabulary_)          # <class 'dict'>
+    save("names", vectorizer.get_feature_names())   # <class 'list'>
+
+    for e in [features, labels, vectorizer.get_feature_names()]:
+        message([e[:10], type(e)])
+    message(list(vectorizer.vocabulary_.items())[:30])
 
 
 if __name__ == "__main__":

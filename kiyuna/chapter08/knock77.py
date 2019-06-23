@@ -6,6 +6,7 @@
 from collections import defaultdict
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.metrics import precision_score, recall_score, f1_score
+from sklearn.metrics import classification_report
 
 POS = "+1"
 NEG = "-1"
@@ -65,6 +66,9 @@ print("再現率:", recall)
 f1 = 2 * precision * recall / (precision + recall)
 assert f1 == f1_score(y_ans, y_pred)
 print("F1スコア:", f1)
+
+
+print(classification_report(y_ans, y_pred))
 
 
 '''

@@ -5,7 +5,6 @@
 from sklearn.linear_model import LogisticRegression
 from knock72 import load, save
 
-
 labels = load("labels")
 features = load("features")
 
