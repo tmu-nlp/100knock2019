@@ -13,7 +13,7 @@ def message(text):
 
 model = load("model")
 names = load("names")
-weights = model.coef_[0]
+weights = model.coef_.flatten()
 rank = sorted(zip(weights, names), reverse=True)
 
 message("[+] best 10")
@@ -21,7 +21,7 @@ for weight, name in rank[:10]:
     print(f"{name:<15}{weight: f}")
 
 message("[+] worst 10")
-for weight, name in rank[-10:]:
+for weight, name in rank[:-11:-1]:
     print(f"{name:<15}{weight: f}")
 
 

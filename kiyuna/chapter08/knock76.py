@@ -5,7 +5,6 @@
 '''
 from knock72 import load
 
-
 model = load("model")
 labels = load("labels")
 features = load("features")

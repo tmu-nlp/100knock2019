@@ -7,13 +7,12 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from knock72 import load, extract_features
 
-
 model = load("model")
 vocab = load("vocabs")
 
 _, docs = extract_features("./test.txt")
-vectorizer = TfidfVectorizer(vocabulary=vocab)
-features = vectorizer.fit_transform(docs).toarray()
+vectorizer = TfidfVectorizer(vocabulary=vocab)          # 疑惑のコード
+features = vectorizer.fit_transform(docs).toarray()     # あとで見直す
 
 pp = zip(model.predict(features), model.predict_proba(features))
 for predict, proba in pp:

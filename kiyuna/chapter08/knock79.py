@@ -14,7 +14,7 @@ features = load("features")
 
 model.classes_  # => array([-1,  1])
 probs = model.predict_proba(features)[:, 1]
-pre, rec, th = precision_recall_curve(labels, probs)
+pre, rec, th = precision_recall_curve(labels, probs)    # PR曲線
 
 plt.plot(pre, rec)
 plt.xlabel("precision")
