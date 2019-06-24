@@ -3,6 +3,7 @@ import random
 from scipy.sparse import lil_matrix
 from sklearn.externals import joblib
 from sklearn.feature_extraction.text import CountVectorizer
+from collections import defaultdict
 
 
 class Matrix:
@@ -59,6 +60,22 @@ def main():
     matrix = Matrix()
     matrix.create_matrix(out_file=False)
 
+    vocab = defaultdict(lambda: len(vocab))
+    with open('knock82.100.txt', 'w') as f:
+        for i, line in enumerate(open('knock81.100.txt')):
+            if i % 1000 == 0:
+                print(i)
+            words = line.lower().strip().split()
+            for index in range(len(words)):
+                t = words[index]
+                vocab[t]
+                width = random.randint(1, 5)
+                left_context = words[index - width: index]
+                right_context = words[index + 1: index + width + 1]
+                context = ' '.join(left_context + right_context)
+                print(f'{t}\t{context}', file=f)
+
 
 if __name__ == '__main__':
     main()
+

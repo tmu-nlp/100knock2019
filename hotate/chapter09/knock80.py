@@ -12,8 +12,12 @@ def remove_noise(line):
 
 def main():
     with open('knock80.100.txt', 'w') as f:
-        for line in bz2.open('enwiki-20150112-400-r100-10576.txt.bz2', mode='rb'):
-            print(remove_noise(line.decode('utf-8')), file=f)
+        for line in open('enwiki-20150112-400-r100-10576.txt', mode='r'):
+            if line == '\n':
+                continue
+            cleaned_line = remove_noise(line)
+            if len(cleaned_line) > 0:
+                print(cleaned_line, file=f)
 
 
 if __name__ == '__main__':
