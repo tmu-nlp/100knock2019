@@ -31,8 +31,7 @@ class Matrix:
                 words = line.lower().strip().split()
                 for index in range(len(words)):
                     t = words[index]
-                    if self.check_stop_word(words[index]):
-                        continue
+                    self.vocab[t]
 
                     width = random.randint(1, 5)
                     left_context = words[index - width: index]
@@ -57,8 +56,8 @@ class Matrix:
 
 
 def main():
-    matrix = Matrix()
-    matrix.create_matrix(out_file=False)
+    # matrix = Matrix()
+    # matrix.create_matrix(out_file=False)
 
     vocab = defaultdict(lambda: len(vocab))
     with open('knock82.100.txt', 'w') as f:
@@ -72,8 +71,12 @@ def main():
                 width = random.randint(1, 5)
                 left_context = words[index - width: index]
                 right_context = words[index + 1: index + width + 1]
-                context = ' '.join(left_context + right_context)
-                print(f'{t}\t{context}', file=f)
+                context = left_context + right_context
+                if len(context) > 0:
+                    c = ' '.join(context)
+                    print(f'{t}\t{c}', file=f)
+
+    joblib.dump(dict(vocab), 'vocab.pkl')
 
 
 if __name__ == '__main__':
