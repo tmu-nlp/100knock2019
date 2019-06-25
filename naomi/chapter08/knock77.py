@@ -1,5 +1,7 @@
 # 77. 正解率の計測
 # 76の出力を受け取り，予測の正解率，正例に関する適合率，再現率，F1スコアを求めるプログラムを作成せよ．
+from sklearn.metrics import classification_report, accuracy_score
+from sklearn.externals import joblib
 
 
 def main():
@@ -24,7 +26,8 @@ def main():
 
     print(f'正解率： {accuracy}')
     print(f'正例の適合率： {precision}')
+    
 
-
+    # classification_report 使って書き換える
 if __name__ == '__main__':
     main()
