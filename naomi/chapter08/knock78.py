@@ -4,7 +4,7 @@
 # モデルの汎化性能を測定していない．
 # そこで，5分割交差検定により，極性分類の正解率，適合率，再現率，F1スコアを求めよ．
 from sklearn.externals import joblib
-from sklearn.model_selection import cross_validate
+from sklearn.model_selection import cross_validate, StratifiedKFold
 from statistics import mean
 
 
@@ -13,8 +13,9 @@ def main():
     feature = joblib.load('feature')
     labels = joblib.load('sentiment')
 
+    skf = StratifiedKFold(5, True)
     scr = ['accuracy', 'precision', 'recall', 'f1']
-    result = cross_validate(model, feature, labels, cv=5, scoring=scr)
+    result = cross_validate(model, feature, labels, cv=skf, scoring=scr)
 
     accuracy = mean(result['test_accuracy'])
     print(f'Accuracy: {accuracy}')

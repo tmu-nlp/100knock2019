@@ -13,10 +13,10 @@ def test(sentence: str) -> (int, float):
     sentence = clean_sentence(sentence)
 
     vectorizer = TfidfVectorizer(vocabulary=vocab)
-    feature_vec = vectorizer.fit_transform([sentence]).toarray()
+    feature_vec = vectorizer.transform([sentence]).toarray()
 
     predict = model.predict(feature_vec)[0]
-    probability = model.predict_proba(feature_vec)[0]
+    probability = model.predict_proba(feature_vec)
 
     return (predict, probability)
 

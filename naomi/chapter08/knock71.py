@@ -6,3 +6,5 @@ def is_stopword(word: str) -> bool:
                  'be', 'on', 'so']
 
     return (word in stopwords)
+
+# 2019/kiyuna/knock71.py見るとdoctestの方法がわかる

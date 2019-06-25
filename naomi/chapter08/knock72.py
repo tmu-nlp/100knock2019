@@ -34,6 +34,7 @@ def abstract_features(inpath: str):
             labels.append(int(label))
             sentences.append(sentence)
 
+        # 2019/hotate/knock72.py 参照すると別の方法ある
         vectorizer = TfidfVectorizer()
         feature = vectorizer.fit_transform(sentences).toarray()
 
