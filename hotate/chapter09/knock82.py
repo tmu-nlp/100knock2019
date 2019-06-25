@@ -1,30 +1,84 @@
 import random
+
+from scipy.sparse import lil_matrix
+from sklearn.externals import joblib
+from sklearn.feature_extraction.text import CountVectorizer
 from collections import defaultdict
 
 
-def word_context(filename='knock81.100.txt'):
-    t_c_dict = defaultdict(list)
-    for line in open(filename):
-        words = line.strip().split()
-        for i in range(len(words)):
-            width = random.randint(1, 5)
-            t = words[i]
-            c_left = words[i - width: i]
-            c_right = words[i + 1: i + width + 1]
-            c = ' '.join(c_left + c_right)
-            t_c_dict[t].append(c)
+class Matrix:
+    def __init__(self, filename='knock81.100.txt'):
+        self.filename = filename
+        self.sentences = list()
+        self.vec = None
+        self.vocab = None
+        self.matrix = None
 
-    return t_c_dict
+    def create_vocab(self):
+        for line in open(self.filename):
+            self.sentences.append(line.strip())
+        self.vec = CountVectorizer(stop_words=[]).fit(self.sentences)
+        self.vocab = self.vec.vocabulary_
+
+    def create_matrix(self, out_file=False):
+        if self.vocab is None:
+            self.create_vocab()
+        self.matrix = lil_matrix((len(self.vocab), len(self.vocab)), dtype='int')
+        with open('knock82.100.txt', 'w') as f:
+            for i, line in enumerate(open(self.filename)):
+                if i % 1000 == 0:
+                    print(i)
+                words = line.lower().strip().split()
+                for index in range(len(words)):
+                    t = words[index]
+                    self.vocab[t]
+
+                    width = random.randint(1, 5)
+                    left_context = words[index - width: index]
+                    right_context = words[index + 1: index + width + 1]
+
+                    for c in left_context + right_context:
+                        if self.check_stop_word(c):
+                            continue
+                        self.matrix[self.vocab[t], self.vocab[c]] += 1
+
+                    if out_file:
+                        print(f'{t}\t{left_context + right_context}', file=f)
+
+        self.dumps()
+
+    def dumps(self):
+        joblib.dump(self.matrix, 'matrix.pkl')
+        joblib.dump(self.vocab, 'vocab.pkl')
+
+    def check_stop_word(self, word):
+        return True if self.vocab.get(word) is None else False
 
 
 def main():
-    t_c_dict = word_context()
+    # matrix = Matrix()
+    # matrix.create_matrix(out_file=False)
 
+    vocab = defaultdict(lambda: len(vocab))
     with open('knock82.100.txt', 'w') as f:
-        for t, c_list in t_c_dict.items():
-            for c in c_list:
-                print(f'{t}\t{c}', file=f)
+        for i, line in enumerate(open('knock81.100.txt')):
+            if i % 1000 == 0:
+                print(i)
+            words = line.lower().strip().split()
+            for index in range(len(words)):
+                t = words[index]
+                vocab[t]
+                width = random.randint(1, 5)
+                left_context = words[index - width: index]
+                right_context = words[index + 1: index + width + 1]
+                context = left_context + right_context
+                if len(context) > 0:
+                    c = ' '.join(context)
+                    print(f'{t}\t{c}', file=f)
+
+    joblib.dump(dict(vocab), 'vocab.pkl')
 
 
 if __name__ == '__main__':
     main()
+
