@@ -1,5 +1,7 @@
-#Stanford Core NLPを用い，入力テキストの解析結果をXML形式で得よ．
-# また，このXMLファイルを読み込み，入力テキストを1行1単語の形式で出力せよ．
+#Stanford Core NLPの係り受け解析の結果（collapsed-dependencies）を有向グラフとして可視化せよ．
+# 可視化には，係り受け木をDOT言語に変換し，Graphvizを用いるとよい．
+# また，Pythonから有向グラフを直接的に可視化するには，pydotを使うとよい．
+
 from pycorenlp import StanfordCoreNLP
 from nltk import stem
 import re
@@ -24,10 +26,10 @@ def nlp_make():
 def analyzer():
         tree = ET.parse(path2)
         root = tree.getroot()
-        for i , word in enumerate(root.iter("word")):
+        for i ,( word, lemma, POS) in enumerate(zip(root.iter("word"), root.iter("lemma"),root.iter("POS") ) ):
                 if i == 50:
                         break
-                print(word.text)
-                
+                print("%s\t%s\t%s" %(word.text, lemma.text, POS.text ))
+
 #nlp_make()
 analyzer()

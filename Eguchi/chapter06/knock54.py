@@ -1,5 +1,4 @@
-#Stanford Core NLPを用い，入力テキストの解析結果をXML形式で得よ．
-# また，このXMLファイルを読み込み，入力テキストを1行1単語の形式で出力せよ．
+#Stanford Core NLPの解析結果XMLを読み込み，単語，レンマ，品詞をタブ区切り形式で出力せよ．
 from pycorenlp import StanfordCoreNLP
 from nltk import stem
 import re
@@ -24,10 +23,10 @@ def nlp_make():
 def analyzer():
         tree = ET.parse(path2)
         root = tree.getroot()
-        for i , word in enumerate(root.iter("word")):
+        for i ,( word, lemma, POS) in enumerate(zip(root.iter("word"), root.iter("lemma"),root.iter("POS") ) ):
                 if i == 50:
                         break
-                print(word.text)
-                
+                print("%s\t%s\t%s" %(word.text, lemma.text, POS.text ))
+
 #nlp_make()
 analyzer()

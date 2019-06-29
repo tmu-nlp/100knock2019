@@ -1,5 +1,5 @@
-#Stanford Core NLPを用い，入力テキストの解析結果をXML形式で得よ．
-# また，このXMLファイルを読み込み，入力テキストを1行1単語の形式で出力せよ．
+#入力文中の人名をすべて抜き出せ．
+
 from pycorenlp import StanfordCoreNLP
 from nltk import stem
 import re
@@ -24,10 +24,9 @@ def nlp_make():
 def analyzer():
         tree = ET.parse(path2)
         root = tree.getroot()
-        for i , word in enumerate(root.iter("word")):
-                if i == 50:
-                        break
-                print(word.text)
-                
+        for ner, person in zip(root.iter("NER"), root.iter("word") ):
+            if ner.text == "PERSON":
+                print(person.text)
+
 #nlp_make()
 analyzer()
