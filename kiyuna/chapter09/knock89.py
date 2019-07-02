@@ -30,7 +30,7 @@ vec = sio.loadmat('./pickles/X_300.mat')['X_300']
 tgt = vec[t2i["Spain"]] - vec[t2i["Madrid"]] + vec[t2i["Athens"]]
 
 ranking = {key: cos_sim(vec[t2i[key]], tgt) for key in ft}
-for key, val in sorted(ranking.items(), key=lambda x: -x[1])[:10]:
+for key, val in sorted(ranking.items(), key=lambda x: -x[1])[:15]:
     print(key, val)
 
 
@@ -45,4 +45,12 @@ Belgium 0.7828949566341542
 Denmark 0.7825201667436116
 Télévisions 0.7786531471544621
 Norway 0.7732616259359913
+------
+Finland 0.7693178154108788
+France 0.7682898128349733
+Vichy 0.7628190627774878
+Greece 0.7513532862874137
+Switzerland 0.7504613457436349
+------
+14 位に Greece ...
 '''

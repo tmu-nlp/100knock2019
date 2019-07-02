@@ -27,13 +27,16 @@ c2i = {token: i for i, token in enumerate(fc)}
 X_idxed = {(t2i[t], c2i[c]): v for (t, c), v in X.items()}
 X_s = sparse.dok_matrix((len(ft), len(fc)))
 X_s.update(X_idxed)
-pca = TruncatedSVD(n_components=300)
+pca = TruncatedSVD(n_components=300)    # 特異値分解
 X_300 = pca.fit_transform(X_s)
 
 sio.savemat('./pickles/X_300.mat', {'X_300': X_300})
 
 
 '''
+memo: 寄与率
+explained_variance_ratio
+
 * scipy.sparse.dok_matrix
 https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.dok_matrix.html
 
