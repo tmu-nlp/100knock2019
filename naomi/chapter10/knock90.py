@@ -6,6 +6,7 @@ import numpy as np
 from gensim.models import word2vec
 import logging
 
+
 def cos_sim(wv1, wv2):
     norm = np.linalg.norm(wv1) * np.linalg.norm(wv2)
     if norm != 0:
@@ -20,9 +21,8 @@ if calc:
                         level=logging.INFO)
 
     sentences = word2vec.Text8Corpus('./knock81.txt')
-
-    # size: word vectorの次元, 
-    # min_count: これより頻度の低い単語は無視, 
+    # size: word vectorの次元,
+    # min_count: これより頻度の低い単語は無視,
     # window: 今の単語と予測される単語の、文内での最大距離
     model = word2vec.Word2Vec(sentences, size=200, min_count=20, window=15)
     model.save('./model/corpus.model')
