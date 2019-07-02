@@ -5,7 +5,7 @@ def compare(path):
         if line[3] == line[4]:
             corr += 1
 
-    accuracy = corr / (count+1)
+    accuracy = corr / (count + 1)
     return accuracy
 
 
@@ -14,3 +14,6 @@ if __name__ == '__main__':
     print(f'90 accuracy = {accuracy}')
     accuracy = compare('knock92.85.txt')
     print(f'85 accuracy = {accuracy}')
+
+# 90 accuracy = 0.08893280632411067
+# 85 accuracy = 0.02766798418972332

@@ -2,7 +2,6 @@ from knock90 import load_word_2_vec
 from sklearn.externals import joblib
 import numpy as np
 from tqdm import tqdm
-from sklearn.metrics.pairwise import cosine_similarity
 
 
 def sim_w2v():
@@ -33,25 +32,10 @@ def sim_85():
         for line in tqdm(open('knock91.txt', 'r')):
             l = line.strip().split()
             top = [None, 0]
-            # vec = matrix[vocab[l[1]]] - matrix[vocab[l[0]]] + matrix[vocab[l[2]]]
-            # for index, t in enumerate(matrix):
-            #     # cs = cosine_similarity(np.reshape(vec, (1, -1)), np.reshape(t, (1, -1)))
-            #
-            #     # cs = cosine_similarity(vec, t)
-            #     # cs = np.dot(matrix[index], vec)
-            #
-            #     # if cs is None:
-            #     #     print(cs)
-            #     if cs > top[1]:
-            #         top[1] = cs
-            #         top[0] = id_to_word[index]
             try:
                 vec = matrix[vocab[l[1]]] - matrix[vocab[l[0]]] + matrix[vocab[l[2]]]
-                # vec2 = mat[vocab[l[1]]] - mat[vocab[l[0]]] + mat[vocab[l[2]]]
                 for index, t in enumerate(matrix):
-                    # cs = cosine_similarity(np.reshape(vec, (1, -1)), np.reshape(t, (1, -1)))
                     cs = np.dot(mat[index], vec / np.linalg.norm(vec, ord=2))
-                    # cs = cos_sim(matrix[index], vec)
                     if cs > top[1]:
                         top[1] = cs
                         top[0] = id_to_word[index]
@@ -59,7 +43,6 @@ def sim_85():
                 top[0] = '-'
                 top[1] = '-'
             print(f'{line.strip()} {top[0]} {top[1]}', file=f)
-            print(f'{line.strip()} {top[0]} {top[1]}')
 
 
 def main():
