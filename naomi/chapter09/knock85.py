@@ -26,4 +26,3 @@ if __name__ == "__main__":
     X300 = pca.fit_transform(X)
 
     save('X300', X300)
-
