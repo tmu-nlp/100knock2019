@@ -19,7 +19,7 @@ def cos_sim(a, b):
     dot = np.dot(a, b)
     if dot == 0:
         return -1
-    return np.dot(a, b) / np.linalg.norm(a) / np.linalg.norm(b)
+    return dot / np.linalg.norm(a) / np.linalg.norm(b)
 
 
 ft = load('ft')

@@ -5,7 +5,7 @@
 '''
 import pickle
 import scipy.io as sio
-import numpy as np
+from numpy.linalg import norm
 from scipy import sparse
 
 
@@ -16,7 +16,7 @@ def load(file_name):
 
 
 def cos_sim(a, b):
-    return np.dot(a, b) / np.linalg.norm(a) / np.linalg.norm(b)
+    return a @ b / norm(a) / norm(b)
 
 
 ft = load('ft')
@@ -25,4 +25,4 @@ X_300 = sio.loadmat('./pickles/X_300.mat')['X_300']
 
 a = X_300[t2i['United_States']]     # `United States`
 b = X_300[t2i['U.S']]               # `U.S.`
-print(cos_sim(a, b))                # 0.8104805243888353
+print(cos_sim(a, b))                # 0.8147650884663092
