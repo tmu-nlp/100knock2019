@@ -1,40 +1,38 @@
 import re
 import functools
- 
+
 class Morph:
     def __init__(self, surface, base, pos, pos1):
         self.surface = surface
         self.base = base
         self.pos = pos
         self.pos1 = pos1
- 
+
     def toList(self):
         return [self.surface, self.base, self.pos, self.pos1]
- 
+
 class Chunk:
     def __init__(self, number, dst):
         self.number = number
         self.morphs = []
         self.dst = dst
         self.srcs = []
- 
+
     def print(self):
         print(self.number)
         print([x.toList() for x in self.morphs])
         print(self.dst, self.srcs)
         print()
- 
+
     def concatMorphs(self):
         seq = filter(lambda x: x.pos != '記号', self.morphs)
         return functools.reduce(lambda x, y: x + y.surface, seq, '')
- 
- 
- 
+
 def analyze():
     article = []
     sentence = []
     chunk = None
-    with open('./chapter05/neko.txt.cabocha', 'r', encoding='utf8') as fin:
+    with open('neko.txt.cabocha', 'r', encoding='utf8') as fin:
         for line in fin:
             words = re.split(r'\t|,|\n| ', line)
             if line[0] == '*':
@@ -56,41 +54,35 @@ def analyze():
                     words[2],
                 ))
     return article
- 
- 
-def findVerbs(sentence):
+
+def findNouns(sentence):
     for chunk in sentence:
         for m in chunk.morphs:
-            if m.pos == '動詞':
-                yield m, chunk.number
+            if m.pos == '名詞':
+                yield chunk
                 break
- 
-def findParticles(sentence, chunkNo):
-    for chunk in sentence:
-        if chunk.dst == chunkNo:
-            for m in reversed(chunk.morphs):
-                if m.pos == '助詞':
-                    yield m
-                    break
- 
-def enumPattern(article):
+
+def makePath(sentence, chunk):
+    curr = sentence[chunk.number]
+    path = []
+    while curr.dst >= 0:
+        path.append(curr.concatMorphs())
+        curr = sentence[curr.dst]
+    path.append(curr.concatMorphs())
+    return path
+
+def enumPath(article):
     for sentence in article:
-        for v, num in findVerbs(sentence):
-            lst = []
-            for p in sorted(findParticles(sentence, num), key=lambda x: x.surface):
-                lst.append(p.surface)
-            if lst:
-                yield v.base, lst
- 
+        for chunk in findNouns(sentence):
+            path = makePath(sentence, chunk)
+            if len(path) >= 2:
+                yield path
+
 def main():
     article = analyze()
-    with open('./chapter05/result45.txt', 'w', encoding='utf8') as w:
-        for v, particles in enumPattern(article):
-            w.write('{}\t{}\n'.format(v, ' '.join(particles)))
- 
+    with open('result48.txt', 'w', encoding='utf8') as w:
+        for path in enumPath(article):
+            w.write('{}\n'.format(' -> '.join(path)))
+
 if __name__ == '__main__':
     main()
-
-
-
-

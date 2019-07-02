@@ -1,35 +1,38 @@
 import re
 import functools
- 
+
 class Morph:
     def __init__(self, surface, base, pos, pos1):
         self.surface = surface
         self.base = base
         self.pos = pos
         self.pos1 = pos1
- 
+
     def toList(self):
         return [self.surface, self.base, self.pos, self.pos1]
- 
+
 class Chunk:
     def __init__(self, number, dst):
         self.number = number
         self.morphs = []
         self.dst = dst
         self.srcs = []
- 
+
     def print(self):
         print(self.number)
         print([x.toList() for x in self.morphs])
         print(self.dst, self.srcs)
         print()
- 
+
     def concatMorphs(self):
         seq = filter(lambda x: x.pos != '記号', self.morphs)
         return functools.reduce(lambda x, y: x + y.surface, seq, '')
- 
- 
- 
+
+class Pair:
+    def __init__(self, particle, paragraph):
+        self.particle = particle
+        self.paragraph = paragraph
+
 def analyze():
     article = []
     sentence = []
@@ -56,41 +59,44 @@ def analyze():
                     words[2],
                 ))
     return article
- 
- 
+
+
 def findVerbs(sentence):
     for chunk in sentence:
-        for m in chunk.morphs:
+        for m in reversed(chunk.morphs):
             if m.pos == '動詞':
                 yield m, chunk.number
                 break
- 
+
 def findParticles(sentence, chunkNo):
     for chunk in sentence:
         if chunk.dst == chunkNo:
+            nextMorph = Morph('', '', '', '')
             for m in reversed(chunk.morphs):
-                if m.pos == '助詞':
-                    yield m
+                if nextMorph.pos == '助詞':
+                    yield m, nextMorph, chunk.concatMorphs()
                     break
- 
+                nextMorph = m
+
 def enumPattern(article):
     for sentence in article:
         for v, num in findVerbs(sentence):
-            lst = []
-            for p in sorted(findParticles(sentence, num), key=lambda x: x.surface):
-                lst.append(p.surface)
-            if lst:
-                yield v.base, lst
- 
+            pairlist = []
+            obj = ''
+            for part1, part2, para in findParticles(sentence, num):
+                if part1.pos == '名詞' and part1.pos1 == 'サ変接続' and part2.surface == 'を':
+                    obj = part1.surface + part2.surface
+                else:
+                    pairlist.append(Pair(part2.surface, para))
+            if pairlist and obj != '':
+                yield obj+v.base, sorted(pairlist, key=lambda x: x.particle)
+
 def main():
     article = analyze()
-    with open('./chapter05/result45.txt', 'w', encoding='utf8') as w:
-        for v, particles in enumPattern(article):
-            w.write('{}\t{}\n'.format(v, ' '.join(particles)))
- 
+    with open('./chapter05/result47.txt', 'w', encoding='utf8') as w:
+        for v, pairList in enumPattern(article):
+            w.write('{}\t{}\t{}\n'.format(v, ' '.join([x.particle for x in pairList]), \
+                ' '.join([x.paragraph for x in pairList])))
+
 if __name__ == '__main__':
     main()
-
-
-
-
