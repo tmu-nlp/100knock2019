@@ -32,5 +32,5 @@ if __name__ == "__main__":
 
     # execute PCA
     X300 = pca.fit_transform(X)
-
+    
     print(X300[t['United_States']])

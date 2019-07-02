@@ -4,6 +4,7 @@
 import pickle
 import numpy as np
 
+
 def save(file_name, data):
     with open(f"./pickles/{file_name}", 'wb') as f_out:
         pickle.dump(data, f_out)
