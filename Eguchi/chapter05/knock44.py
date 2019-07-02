@@ -2,9 +2,6 @@
 
 
 from graphviz import Digraph
-#係り元の文節と係り先の文節のテキストをタブ区切り形式ですべて抽出せよ．ただし，句読点などの記号は出力しないようにせよ．
-
-
 import CaboCha
 import re
 class Morph:
