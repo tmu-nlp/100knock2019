@@ -4,7 +4,7 @@ import random
 fencoding = "cp1252"
 pos_path = r"C:\Users\Koya\Documents\Lab\rt-polaritydata\rt-polaritydata\rt-polarity.pos"
 neg_path = r"C:\Users\Koya\Documents\Lab\rt-polaritydata\rt-polaritydata\rt-polarity.neg"
-ans_path = r"C:\Users\Koya\Documents\Lab\ans.txt"
+ans_path = r"C:\Users\Koya\Documents\Lab\sentiment.txt"
 x=""
 
 ans = []

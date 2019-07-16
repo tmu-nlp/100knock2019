@@ -1,8 +1,10 @@
-#極性分析に有用そうな素性を各自で設計し，学習データから素性を抽出せよ．
-#素性としては，レビューからストップワードを除去し，各単語をステミング処理したものが最低限のベースラインとなるであろう．
+#72で抽出した素性を用いて，ロジスティック回帰モデルを学習せよ．
 import collections
 import codecs
 from nltk import stem
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+
 
 def reg_stop_word():
     stop_words = [
@@ -46,18 +48,20 @@ def extract():
         for line in f:
             label = line[:2]
             without_label = line[3:]
-            without_label_list.append(without_label)    
-            label_list.append(label)
             for word in without_label.split(" "):
                 if detect(word, reg_stop_word()) :
                     continue
                 word= stemmer.stem(word)
                 line_list.append(word)
-    counter = collections.Counter(line_list)
-    output = list()
-    for line, num  in counter.items():
-        if num > 5:        
-            output.append(line)
+                without_label_list.append(without_label)    
+                label_list.append(label)
+    output = line_list
     
-    print(output)
+    vectorizer = TfidfVectorizer()
+    features = vectorizer.fit_transform(output).toarray()
+
+    model = LogisticRegression().fit(features, label_list)
+
+
+
 extract()
