@@ -1,10 +1,36 @@
 #73で学習したロジスティック回帰モデルを用い，与えられた文の極性ラベル（正例なら"+1"，負例なら"-1"）と，
 # その予測確率を計算するプログラムを実装せよ．
 import collections
-import codecs
+
 from nltk import stem
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+import joblib
+
+
+
+def input_data():
+    input_path = r"C:\Users\Koya\Documents\Lab\sentiment.txt"
+    f = open(input_path, encoding='latin-1')
+    for _ in range(2):
+        next(f)
+    sentence = f.readline()
+    sentence = sentence.strip()[3:]
+    print("Input sentence\n", sentence)
+    feature = remove_stopwprd(sentence)
+    return feature
+
+def make_vec(feature):
+    model = joblib.load('logr_model')
+    vocab = joblib.load('tfidf_vocab')
+    vectorizer = TfidfVectorizer(vocabulary=vocab)
+    feature_vec = vectorizer.fit_transform([feature]).toarray()
+    predict = model.predict(feature_vec)[0]
+    probability = model.predict_proba(feature_vec).flatten()
+    print(f"Predict result: {predict}")
+    print(f"Probability of result\n-1: {probability[0]:.2}%\n+1: {probability[1]:.2}%")
+
+
 
 
 def reg_stop_word():
@@ -29,40 +55,19 @@ def reg_stop_word():
 
     return stop_word_list
 
-def detect(sentence, stop_list):
-    sentence = sentence.lower()
-    for word in sentence.split():
-        return word in stop_list
 
-
-
-def extract():
-    input_path = r"C:\Users\Koya\Documents\Lab\sentiment.txt"
-    
-    fencoding = "cp1252"
-    label_list = list()
-    without_label_list = list()
-    line_list = list()
+def remove_stopwprd(sentence):
+    stopword_list = reg_stop_word()
+    output = ""
     stemmer = stem.PorterStemmer()
-
-    with codecs.open(input_path, "r", fencoding) as f:
-        for line in f:
-            label = line[:2]
-            without_label = line[3:]
-            for word in without_label.split(" "):
-                if detect(word, reg_stop_word()) :
-                    continue
-                word= stemmer.stem(word)
-                line_list.append(word)
-                without_label_list.append(without_label)    
-                label_list.append(label)
-    output = line_list
     
-    vectorizer = TfidfVectorizer()
-    features = vectorizer.fit_transform(output).toarray()
+    for word in sentence.lower().split():
+        word = stemmer.stem(word)
+        if word in stopword_list:
+            continue
+        output += word + " "
+    return output
 
-    model = LogisticRegression().fit(features, label_list)
 
-
-
-extract()
+fe = input_data()
+make_vec(fe)

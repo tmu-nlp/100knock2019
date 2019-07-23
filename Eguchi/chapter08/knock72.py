@@ -3,6 +3,9 @@
 import collections
 import codecs
 from nltk import stem
+from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+import joblib
 
 def reg_stop_word():
     stop_words = [
@@ -26,10 +29,20 @@ def reg_stop_word():
 
     return stop_word_list
 
-def detect(sentence, stop_list):
-    sentence = sentence.lower()
-    for word in sentence.split():
-        return word in stop_list
+
+def remove_stopwprd(sentence):
+    stopword_list = reg_stop_word()
+    output = ""
+    stemmer = stem.PorterStemmer()
+    
+    for word in sentence.lower().split():
+        word = stemmer.stem(word)
+        
+        if word in stopword_list:
+            continue
+        output += word + " "
+    return output
+
 
 
 
@@ -37,27 +50,44 @@ def extract():
     input_path = r"C:\Users\Koya\Documents\Lab\sentiment.txt"
     
     fencoding = "cp1252"
-    label_list = list()
-    without_label_list = list()
-    line_list = list()
-    stemmer = stem.PorterStemmer()
-
+    label = list()
+    corpus =list()
+    
     with codecs.open(input_path, "r", fencoding) as f:
         for line in f:
-            label = line[:2]
-            without_label = line[3:]
-            without_label_list.append(without_label)    
-            label_list.append(label)
-            for word in without_label.split(" "):
-                if detect(word, reg_stop_word()) :
-                    continue
-                word= stemmer.stem(word)
-                line_list.append(word)
-    counter = collections.Counter(line_list)
-    output = list()
-    for line, num  in counter.items():
-        if num > 5:        
-            output.append(line)
+            label.append(line[:2])
+            line = line[3:]
+            corpus.append(remove_stopwprd(line))
+        
     
-    print(output)
+    vectorizer = TfidfVectorizer()
+    feature = vectorizer.fit_transform(corpus).toarray()
+    sentiment = np.array(label)
+    joblib.dump(feature, 'tfidf_feature')
+    joblib.dump(sentiment, 'tfidf_sentiment')
+    joblib.dump(vectorizer.vocabulary_, 'tfidf_vocab')
+    joblib.dump(vectorizer.get_feature_names(), 'tfidf_name')
+
+def count_f():
+    input_path = r"C:\Users\Koya\Documents\Lab\sentiment.txt"
+    
+    fencoding = "cp1252"
+    label = list()
+    corpus =list()
+    
+    with codecs.open(input_path, "r", fencoding) as f:
+        for line in f:
+            label.append(line[:2])
+            line = line[3:]
+            corpus.append(remove_stopwprd(line))
+    
+    count_vectorizer = TfidfVectorizer()
+    feature = count_vectorizer.fit_transform(corpus).toarray()
+    sentiment = np.array(label)
+    joblib.dump(feature, 'count_feature')
+    joblib.dump(sentiment, 'count_sentiment')
+    joblib.dump(count_vectorizer.vocabulary_, 'count_vocab')
+    joblib.dump(count_vectorizer.get_feature_names(), 'count_name')
+
 extract()
+count_f()
