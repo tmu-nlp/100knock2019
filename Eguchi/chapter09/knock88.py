@@ -29,9 +29,7 @@ for i in range(0, len(dict_index_t)) :
     rank.append(value)
 
 index_sorted = np.argsort( rank)
-
 keys = list(dict_index_t.keys())
-
 for index in index_sorted[-2:-12:-1]:      
     print('{}\t{}'.format(keys[index], rank[index]))
 
