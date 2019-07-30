@@ -1,4 +1,5 @@
-#MongoDBのインタラクティブシェルを用いて，活動場所が「Japan」となっているアーティスト数を求めよ．
+#特定の（指定した）別名を持つアーティストを検索せよ．
+
 
 from tqdm import tqdm
 import json
@@ -8,6 +9,10 @@ from bson.objectid import ObjectId
 client = MongoClient()
 db = client.testdb
 collection = db.artist
+key = input("別名を入力--->")
 
-count = collection.find({"area":"Japan"}).count()
-print(count)
+alias_name = collection.find({"aliases.name":key})
+
+for i, data in enumerate( alias_name, start=1):
+    print("%d件目\n%s" %(i, data))
+
